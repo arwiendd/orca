@@ -105,7 +105,7 @@ endif()
 # Create a slic3r executable
 # Process manifests for various platforms.
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dev-utils/platform/msw/OrcaSlicer.rc.in ${CMAKE_CURRENT_BINARY_DIR}/OrcaSlicer.rc @ONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dev-utils/platform/msw/OrcaSlicer.manifest.in ${CMAKE_CURRENT_BINARY_DIR}/OrcaSlicer.manifest @ONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dev-utils/platform/msw/ConfabricSlicer.manifest.in ${CMAKE_CURRENT_BINARY_DIR}/ConfabricSlicer.manifest @ONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dev-utils/platform/osx/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist @ONLY)
 if (WIN32)
     add_library(OrcaSlicer SHARED OrcaSlicer.cpp OrcaSlicer.hpp)
@@ -120,8 +120,8 @@ endif (MINGW)
 
 if (NOT WIN32 AND NOT APPLE)
     # Binary name on unix like systems (Linux, Unix)
-    set_target_properties(OrcaSlicer PROPERTIES OUTPUT_NAME "orca-slicer")
-    set(SLIC3R_APP_CMD "orca-slicer")
+    set_target_properties(OrcaSlicer PROPERTIES OUTPUT_NAME "confabric-slicer")
+    set(SLIC3R_APP_CMD "confabric-slicer")
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dev-utils/platform/unix/build_linux_image.sh.in ${CMAKE_CURRENT_BINARY_DIR}/build_linux_image.sh USE_SOURCE_PERMISSIONS @ONLY)
 endif ()
 
