@@ -1,0 +1,9 @@
+{
+    "type": "machine_model",
+    "name": "Creter MINI Pro",
+    "model_id": "Creter-MINI-Pro",
+    "nozzle_diameter": "30",
+    "machine_tech": "FFF",
+    "family": "Confabric",
+    "default_materials": "Concem K1"
+}

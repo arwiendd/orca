@@ -1,0 +1,40 @@
+{
+    "type": "machine",
+    "name": "Creter MINI Pro 35mm nozzle",
+    "inherits": "fdm_machine_common",
+    "from": "system",
+    "setting_id": "CFPRO35",
+    "instantiation": "true",
+    "printer_settings_id": "Confabric",
+    "printer_model": "Creter MINI Pro",
+    "default_print_profile": "10mm Layer @Creter MINI Pro",
+    "nozzle_diameter": [
+        "35"
+    ],
+    "printer_variant": "35mm",
+    "printable_area": [
+        "0x0",
+        "1500x0",
+        "1500x1500",
+        "0x1500"
+    ],
+    "printable_height": "800",
+    "nozzle_type": "hardened_steel",
+    "machine_end_gcode": "; End G-code for Creter MINI Pro\nG91 ; Relative positioning\nG1 Z10 F300 ; Move Z up\nG90 ; Absolute positioning\nG1 X0 Y0 F3000 ; Move to home\nM84 ; Disable motors",
+    "machine_start_gcode": "; Start G-code for Creter MINI Pro Concrete Printer\nG28 ; Home all axes\nG90 ; Absolute positioning\nG1 Z5 F300 ; Move Z up\nG1 X10 Y10 F3000 ; Move to start position\nG1 Z0.5 F300 ; Lower Z",
+    "max_layer_height": [
+        "25"
+    ],
+    "min_layer_height": [
+        "5"
+    ],
+    "retraction_length": [
+        "0"
+    ],
+    "retraction_speed": [
+        "30"
+    ],
+    "z_hop": [
+        "5"
+    ]
+}
