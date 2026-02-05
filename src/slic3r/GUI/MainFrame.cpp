@@ -3430,9 +3430,10 @@ void MainFrame::load_config_file()
     //BBS do not load config file
  //   if (!wxGetApp().check_and_save_current_preset_changes(_L("Loading profile file"), "", false))
  //       return;
+    // Confabric: Do not allow importing printer profiles (.orca_printer files removed from filter)
     wxFileDialog dlg(this, _L("Select profile to load:"),
         !m_last_config.IsEmpty() ? get_dir_name(m_last_config) : wxGetApp().app_config->get_last_dir(),
-        "config.json", "Config files (*.json;*.zip;*.orca_printer;*.orca_filament)|*.json;*.zip;*.orca_printer;*.orca_filament", wxFD_OPEN | wxFD_MULTIPLE | wxFD_FILE_MUST_EXIST);
+        "config.json", "Config files (*.json;*.zip;*.orca_filament)|*.json;*.zip;*.orca_filament", wxFD_OPEN | wxFD_MULTIPLE | wxFD_FILE_MUST_EXIST);
      wxArrayString files;
     if (dlg.ShowModal() != wxID_OK)
         return;

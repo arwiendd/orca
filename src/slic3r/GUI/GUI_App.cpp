@@ -7298,6 +7298,16 @@ bool GUI_App::run_wizard(ConfigWizard::RunReason reason, ConfigWizard::StartPage
 {
     wxCHECK_MSG(mainframe != nullptr, false, "Internal error: Main frame not created / null");
 
+    // Confabric: Block printer wizard - users can only use Creter MINI / Creter MINI Pro
+    if (start_page == ConfigWizard::SP_PRINTERS) {
+        // Show message that printer selection is not available
+        MessageDialog msg(mainframe,
+            _L("Confabric Slicer only supports Creter MINI and Creter MINI Pro printers.\nPrinter selection is not available."),
+            _L("Printer Selection Disabled"), wxOK | wxICON_INFORMATION);
+        msg.ShowModal();
+        return false;
+    }
+
 #ifdef __APPLE__
      if (is_adding_script_handler()) {
         BOOST_LOG_TRIVIAL(info) << "run_wizard: Script handler is being added, delaying wizard creation";
@@ -7328,10 +7338,10 @@ bool GUI_App::run_wizard(ConfigWizard::RunReason reason, ConfigWizard::StartPage
         pStyle = wxCAPTION | wxTAB_TRAVERSAL;
 
     GuideFrame wizard(this, pStyle);
+    // Confabric: Only allow filament selection wizard, not printer selection
     auto page = start_page == ConfigWizard::SP_WELCOME ? GuideFrame::BBL_WELCOME :
                 start_page == ConfigWizard::SP_FILAMENTS ? GuideFrame::BBL_FILAMENT_ONLY :
-                start_page == ConfigWizard::SP_PRINTERS ? GuideFrame::BBL_MODELS_ONLY :
-                GuideFrame::BBL_MODELS;
+                GuideFrame::BBL_FILAMENT_ONLY; // Redirect printer selection to filament
     wizard.SetStartPage(page);
     bool       res = wizard.run();
 

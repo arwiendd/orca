@@ -1049,14 +1049,8 @@ void PlaterPresetComboBox::change_extruder_color()
 
 void PlaterPresetComboBox::show_add_menu()
 {
-    wxMenu* menu = new wxMenu();
-
-    append_menu_item(menu, wxID_ANY, _L("Add/Remove presets"), "",
-        [](wxCommandEvent&) {
-            wxTheApp->CallAfter([]() { run_wizard(ConfigWizard::SP_PRINTERS); });
-        }, "menu_edit_preset", menu, []() { return true; }, wxGetApp().plater());
-
-    wxGetApp().plater()->PopupMenu(menu);
+    // Confabric: Printer adding is disabled - users can only use Creter MINI / Creter MINI Pro
+    // Do nothing for printer type
 }
 
 void PlaterPresetComboBox::show_edit_menu()
@@ -1076,10 +1070,13 @@ void PlaterPresetComboBox::show_edit_menu()
     }
 #endif //__linux__
 
-    append_menu_item(menu, wxID_ANY, _L("Add/Remove presets"), "",
-        [](wxCommandEvent&) {
-            wxTheApp->CallAfter([]() { run_wizard(ConfigWizard::SP_PRINTERS); });
-        }, "menu_edit_preset", menu, []() { return true; }, wxGetApp().plater());
+    // Confabric: Only show Add/Remove presets for filaments, not printers
+    if (m_type != Preset::TYPE_PRINTER) {
+        append_menu_item(menu, wxID_ANY, _L("Add/Remove presets"), "",
+            [](wxCommandEvent&) {
+                wxTheApp->CallAfter([]() { run_wizard(ConfigWizard::SP_PRINTERS); });
+            }, "menu_edit_preset", menu, []() { return true; }, wxGetApp().plater());
+    }
 
     wxGetApp().plater()->PopupMenu(menu);
 }
@@ -1379,7 +1376,8 @@ void PlaterPresetComboBox::update()
         }
     }*/
 
-    if (m_type == Preset::TYPE_PRINTER || m_type == Preset::TYPE_FILAMENT || m_type == Preset::TYPE_SLA_MATERIAL) {
+    // Confabric: Only allow adding/removing filaments, not printers
+    if (m_type == Preset::TYPE_FILAMENT || m_type == Preset::TYPE_SLA_MATERIAL) {
         wxBitmap* bmp = get_bmp("edit_preset_list", wide_icons, "edit_uni");
         assert(bmp);
 
@@ -1387,10 +1385,7 @@ void PlaterPresetComboBox::update()
             set_label_marker(Append(separator(L("Add/Remove filaments")), *bmp), LABEL_ITEM_WIZARD_FILAMENTS);
         else if (m_type == Preset::TYPE_SLA_MATERIAL)
             set_label_marker(Append(separator(L("Add/Remove materials")), *bmp), LABEL_ITEM_WIZARD_MATERIALS);
-        else {
-            set_label_marker(Append(separator(L("Select/Remove printers (system presets)")), *bmp), LABEL_ITEM_WIZARD_PRINTERS);
-            set_label_marker(Append(separator(L("Create printer")), *bmp), LABEL_ITEM_WIZARD_ADD_PRINTERS);
-        }
+        // Confabric: Printer adding is disabled - users can only use Creter MINI / Creter MINI Pro
     }
 
     update_selection();

@@ -51,12 +51,12 @@ static std::vector<std::string> s_project_options {
     "filament_map"
 };
 
-//Orca: add custom as default
-const char *PresetBundle::ORCA_DEFAULT_BUNDLE = "Custom";
-const char *PresetBundle::ORCA_DEFAULT_PRINTER_MODEL = "MyKlipper 0.4 nozzle";
-const char *PresetBundle::ORCA_DEFAULT_PRINTER_VARIANT = "0.4";
-const char *PresetBundle::ORCA_DEFAULT_FILAMENT = "Generic PLA @System";
-const char *PresetBundle::ORCA_FILAMENT_LIBRARY = "OrcaFilamentLibrary";
+//Confabric: set Confabric as default
+const char *PresetBundle::ORCA_DEFAULT_BUNDLE = "Confabric";
+const char *PresetBundle::ORCA_DEFAULT_PRINTER_MODEL = "Creter MINI 30mm nozzle";
+const char *PresetBundle::ORCA_DEFAULT_PRINTER_VARIANT = "30";
+const char *PresetBundle::ORCA_DEFAULT_FILAMENT = "Concem K1";
+const char *PresetBundle::ORCA_FILAMENT_LIBRARY = "ConfabricFilamentLibrary";
 
 DynamicPrintConfig PresetBundle::construct_full_config(
     Preset& in_printer_preset,
