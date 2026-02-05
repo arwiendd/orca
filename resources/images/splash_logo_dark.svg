@@ -1,36 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480">
-  <!-- Background for dark mode -->
+  <!-- Dark background -->
   <rect width="480" height="480" fill="#2d2d2d"/>
 
-  <!-- Confabric Logo - Stylized C -->
-  <g transform="translate(165, 60)">
-    <rect x="0" y="0" width="150" height="150" rx="20" ry="20" fill="#404040"/>
-    <circle cx="75" cy="75" r="55" fill="#009789"/>
-    <path d="M75 30 A45 45 0 1 0 75 120 A45 45 0 0 1 75 40 A35 35 0 1 1 75 110 A35 35 0 0 0 75 30 Z" fill="#2d2d2d"/>
-    <circle cx="95" cy="50" r="8" fill="#ffffff" opacity="0.4"/>
-  </g>
+  <!-- Logo background box -->
+  <rect x="140" y="80" width="200" height="200" rx="25" ry="25" fill="#404040"/>
 
-  <!-- CONFABRIC text -->
-  <text x="240" y="260"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="52"
-        font-weight="bold"
-        fill="#009789"
-        text-anchor="middle">confabric</text>
+  <!-- Main teal circle -->
+  <circle cx="240" cy="180" r="75" fill="#009789"/>
 
-  <!-- SLICER text -->
-  <text x="240" y="320"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="52"
-        font-weight="normal"
-        fill="#999999"
-        text-anchor="middle">slicer</text>
+  <!-- Dark ring -->
+  <circle cx="240" cy="180" r="55" fill="#2d2d2d"/>
 
-  <!-- Version placeholder area -->
-  <text x="240" y="380"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="24"
-        fill="#868686"
-        text-anchor="middle"></text>
+  <!-- Cut out right side -->
+  <rect x="235" y="125" width="85" height="110" fill="#2d2d2d"/>
+
+  <!-- Inner teal circle (makes C shape) -->
+  <circle cx="240" cy="180" r="40" fill="#009789"/>
+
+  <!-- Cut out right side of inner circle -->
+  <rect x="240" y="140" width="60" height="80" fill="#009789"/>
+
+  <!-- Highlight -->
+  <ellipse cx="275" cy="140" rx="12" ry="10" fill="#ffffff" opacity="0.3"/>
 </svg>
