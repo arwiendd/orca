@@ -465,7 +465,7 @@ private:
             //title = wxGetApp().is_editor() ? SLIC3R_APP_FULL_NAME : GCODEVIEWER_APP_NAME;
 
             // dynamically get the version to display
-            version = GUI_App::format_display_version();
+            version = wxString(SLIC3R_APP_FULL_NAME) + "\n" + GUI_App::format_display_version();
 
             // credits infornation
             credits = "";
