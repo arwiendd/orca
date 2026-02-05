@@ -4,6 +4,18 @@
 
 set WP=%CD%
 
+REM CMake PATH ayari (Strawberry Perl cakismasi icin)
+set PATH=C:\Program Files\CMake\bin;%PATH%
+
+REM Visual Studio 2022 ortamini yukle
+if exist "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat" (
+    call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat" -arch=x64
+) else if exist "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat" (
+    call "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat" -arch=x64
+) else if exist "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" (
+    call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" -arch=x64
+)
+
 REM Build type secimi
 set build_type=Release
 set build_dir=build
