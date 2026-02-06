@@ -56,7 +56,7 @@ const char *PresetBundle::ORCA_DEFAULT_BUNDLE = "Custom";
 const char *PresetBundle::ORCA_DEFAULT_PRINTER_MODEL = "Custom";
 const char *PresetBundle::ORCA_DEFAULT_PRINTER_VARIANT = "0.4";
 const char *PresetBundle::ORCA_DEFAULT_FILAMENT = "Default Filament";
-const char *PresetBundle::ORCA_FILAMENT_LIBRARY = "ConfabricFilamentLibrary";
+const char *PresetBundle::ORCA_FILAMENT_LIBRARY = "OrcaFilamentLibrary";
 
 DynamicPrintConfig PresetBundle::construct_full_config(
     Preset& in_printer_preset,
