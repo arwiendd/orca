@@ -53,8 +53,8 @@ static std::vector<std::string> s_project_options {
 
 //Confabric: set Confabric as default
 const char *PresetBundle::ORCA_DEFAULT_BUNDLE = "Confabric";
-const char *PresetBundle::ORCA_DEFAULT_PRINTER_MODEL = "Creter MINI 30mm nozzle";
-const char *PresetBundle::ORCA_DEFAULT_PRINTER_VARIANT = "30";
+const char *PresetBundle::ORCA_DEFAULT_PRINTER_MODEL = "Creter MINI";
+const char *PresetBundle::ORCA_DEFAULT_PRINTER_VARIANT = "30mm";
 const char *PresetBundle::ORCA_DEFAULT_FILAMENT = "Concem K1";
 const char *PresetBundle::ORCA_FILAMENT_LIBRARY = "ConfabricFilamentLibrary";
 
