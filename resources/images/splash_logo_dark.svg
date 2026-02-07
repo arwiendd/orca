@@ -3,30 +3,42 @@
   <!-- Dark background -->
   <rect width="480" height="480" fill="#2d2d2d"/>
 
-  <!-- Logo background box -->
-  <rect x="140" y="60" width="200" height="200" rx="25" ry="25" fill="#404040"/>
+  <!-- Outer C ring -->
+  <path d="M240,60
+           C350,60 440,150 440,260
+           C440,370 350,460 240,460
+           C130,460 40,370 40,260
+           C40,150 130,60 240,60
+           M240,100
+           C152,100 80,172 80,260
+           C80,348 152,420 240,420
+           C328,420 400,348 400,260
+           C400,172 328,100 240,100"
+        fill="#ffffff"/>
 
-  <!-- Main teal circle -->
-  <circle cx="240" cy="160" r="75" fill="#009789"/>
+  <!-- Inner C ring -->
+  <path d="M240,130
+           C312,130 370,188 370,260
+           C370,332 312,390 240,390
+           C168,390 110,332 110,260
+           C110,188 168,130 240,130
+           M240,170
+           C190,170 150,210 150,260
+           C150,310 190,350 240,350
+           C290,350 330,310 330,260
+           C330,210 290,170 240,170"
+        fill="#ffffff"/>
 
-  <!-- Dark ring -->
-  <circle cx="240" cy="160" r="55" fill="#2d2d2d"/>
+  <!-- Cut out right side to make C shapes -->
+  <rect x="240" y="130" width="200" height="260" fill="#2d2d2d"/>
 
-  <!-- Cut out right side -->
-  <rect x="235" y="105" width="85" height="110" fill="#2d2d2d"/>
-
-  <!-- Inner teal circle (makes C shape) -->
-  <circle cx="240" cy="160" r="40" fill="#009789"/>
-
-  <!-- Cut out right side of inner circle -->
-  <rect x="240" y="120" width="60" height="80" fill="#009789"/>
-
-  <!-- Highlight -->
-  <ellipse cx="275" cy="120" rx="12" ry="10" fill="#ffffff" opacity="0.3"/>
+  <!-- Gap between rings on right -->
+  <rect x="240" y="100" width="200" height="30" fill="#2d2d2d"/>
+  <rect x="240" y="390" width="200" height="30" fill="#2d2d2d"/>
 
   <!-- CONFABRIC Text -->
-  <text x="240" y="310" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">CONFABRIC</text>
+  <text x="240" y="520" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#ffffff" text-anchor="middle" transform="translate(0,-80)">CONFABRIC</text>
 
-  <!-- Slicer Text -->
-  <text x="240" y="360" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#cccccc" text-anchor="middle">Slicer</text>
+  <!-- Slicer Text (smaller, below) - position adjusted -->
+  <text x="305" y="310" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#aaaaaa" text-anchor="middle">Slicer</text>
 </svg>
