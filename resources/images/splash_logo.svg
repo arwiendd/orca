@@ -4,23 +4,29 @@
   <rect width="480" height="480" fill="#ffffff"/>
 
   <!-- Logo background box -->
-  <rect x="140" y="80" width="200" height="200" rx="25" ry="25" fill="#e9e9e9"/>
+  <rect x="140" y="60" width="200" height="200" rx="25" ry="25" fill="#e9e9e9"/>
 
   <!-- Main teal circle -->
-  <circle cx="240" cy="180" r="75" fill="#009789"/>
+  <circle cx="240" cy="160" r="75" fill="#009789"/>
 
   <!-- White ring -->
-  <circle cx="240" cy="180" r="55" fill="#ffffff"/>
+  <circle cx="240" cy="160" r="55" fill="#ffffff"/>
 
   <!-- Cut out right side of white ring -->
-  <rect x="235" y="125" width="85" height="110" fill="#ffffff"/>
+  <rect x="235" y="105" width="85" height="110" fill="#ffffff"/>
 
   <!-- Inner teal circle (makes C shape) -->
-  <circle cx="240" cy="180" r="40" fill="#009789"/>
+  <circle cx="240" cy="160" r="40" fill="#009789"/>
 
   <!-- Cut out right side of inner circle -->
-  <rect x="240" y="140" width="60" height="80" fill="#009789"/>
+  <rect x="240" y="120" width="60" height="80" fill="#009789"/>
 
   <!-- Highlight -->
-  <ellipse cx="275" cy="140" rx="12" ry="10" fill="#ffffff" opacity="0.4"/>
+  <ellipse cx="275" cy="120" rx="12" ry="10" fill="#ffffff" opacity="0.4"/>
+
+  <!-- CONFABRIC Text -->
+  <text x="240" y="310" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="bold" fill="#333333" text-anchor="middle">CONFABRIC</text>
+
+  <!-- Slicer Text -->
+  <text x="240" y="360" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#666666" text-anchor="middle">Slicer</text>
 </svg>

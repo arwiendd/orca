@@ -370,7 +370,8 @@ void BBLTopbar::EnableUndoRedoItems()
 {
     this->EnableTool(m_undo_item->GetId(), true);
     this->EnableTool(m_redo_item->GetId(), true);
-    this->EnableTool(m_calib_item->GetId(), true);
+    // Confabric: m_calib_item may be nullptr when Calibration is removed
+    if (m_calib_item) this->EnableTool(m_calib_item->GetId(), true);
     Refresh();
 }
 
@@ -378,7 +379,8 @@ void BBLTopbar::DisableUndoRedoItems()
 {
     this->EnableTool(m_undo_item->GetId(), false);
     this->EnableTool(m_redo_item->GetId(), false);
-    this->EnableTool(m_calib_item->GetId(), false);
+    // Confabric: m_calib_item may be nullptr when Calibration is removed
+    if (m_calib_item) this->EnableTool(m_calib_item->GetId(), false);
     Refresh();
 }
 
