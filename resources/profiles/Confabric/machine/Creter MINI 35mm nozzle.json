@@ -7,7 +7,7 @@
     "instantiation": "true",
     "printer_model": "Creter MINI",
     "printer_variant": "35mm",
-    "nozzle_diameter": ["35"],
+    "nozzle_diameter": ["35mm"],
     "printable_area": ["0x0", "2000x0", "2000x1500", "0x1500"],
     "printable_height": "1000",
     "default_print_profile": "process template @Creter",
