@@ -1,0 +1,77 @@
+{
+    "bed_custom_model": "C:\\\\Users\\\\cihan\\\\OneDrive\\\\Masaüstü\\\\Yeni klasör\\\\1.stl",
+    "before_layer_change_gcode": "",
+    "best_object_pos": "0,0",
+    "deretraction_speed": [
+        "50"
+    ],
+    "enable_filament_ramming": "0",
+    "fan_speedup_overhangs": "0",
+    "from": "User",
+    "inherits": "Teknomaker Mini 3dcp 1.2 nozzle",
+    "is_custom_defined": "0",
+    "layer_change_gcode": "",
+    "machine_max_acceleration_x": [
+        "3000",
+        "20000"
+    ],
+    "machine_max_acceleration_y": [
+        "3000",
+        "20000"
+    ],
+    "machine_max_acceleration_z": [
+        "10",
+        "200"
+    ],
+    "machine_max_speed_x": [
+        "300",
+        "200"
+    ],
+    "machine_max_speed_y": [
+        "300",
+        "200"
+    ],
+    "machine_max_speed_z": [
+        "5",
+        "12"
+    ],
+    "machine_start_gcode": "START_PRINT",
+    "max_layer_height": [
+        "50"
+    ],
+    "min_layer_height": [
+        "5"
+    ],
+    "name": "Teknomaker Mini 3dcp 45mm nozzle",
+    "nozzle_diameter": [
+        "45"
+    ],
+    "nozzle_type": "stainless_steel",
+    "printable_area": [
+        "0x0",
+        "1550x0",
+        "1550x1150",
+        "0x1150"
+    ],
+    "printer_settings_id": "Teknomaker Mini 3dcp 45mm nozzle",
+    "purge_in_prime_tower": "0",
+    "retract_length_toolchange": [
+        "0"
+    ],
+    "retraction_length": [
+        "0"
+    ],
+    "retraction_speed": [
+        "50"
+    ],
+    "support_air_filtration": "0",
+    "support_chamber_temp_control": "0",
+    "use_firmware_retraction": "1",
+    "version": "1.9.0.2",
+    "wipe": [
+        "0"
+    ],
+    "z_hop": [
+        "5"
+    ]
+}
