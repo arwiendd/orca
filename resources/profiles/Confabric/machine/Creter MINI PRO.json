@@ -2,7 +2,7 @@
     "type": "machine_model",
     "name": "Creter MINI PRO",
     "model_id": "Creter_MINI_PRO",
-    "nozzle_diameter": "30;35;40;45;50",
+    "nozzle_diameter": "30mm;35mm;40mm;45mm;50mm",
     "machine_tech": "FFF",
     "family": "Creter",
     "bed_model": "",
