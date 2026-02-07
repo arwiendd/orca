@@ -1,0 +1,70 @@
+{
+    "activate_air_filtration": [
+        "0"
+    ],
+    "enable_overhang_bridge_fan": [
+        "0"
+    ],
+    "filament_cost": [
+        "12.5"
+    ],
+    "filament_density": [
+        "1.7"
+    ],
+    "filament_diameter": [
+        "100"
+    ],
+    "filament_end_gcode": [
+        "\n"
+    ],
+    "filament_flow_ratio": [
+        "1.21"
+    ],
+    "filament_max_volumetric_speed": [
+        "2.14748e+09"
+    ],
+    "filament_settings_id": [
+        "Concrete-1.21"
+    ],
+    "filament_start_gcode": [
+        ""
+    ],
+    "filament_type": [
+        "Concrete"
+    ],
+    "from": "User",
+    "hot_plate_temp": [
+        "0"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "0"
+    ],
+    "inherits": "Generic ABS template @Teknomaker Mini 3dcp 1.2 nozzle",
+    "is_custom_defined": "0",
+    "name": "Concrete-1.21",
+    "nozzle_temperature": [
+        "0"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "0"
+    ],
+    "nozzle_temperature_range_high": [
+        "0"
+    ],
+    "nozzle_temperature_range_low": [
+        "0"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "0"
+    ],
+    "required_nozzle_HRC": [
+        "0"
+    ],
+    "slow_down_for_layer_cooling": [
+        "0"
+    ],
+    "temperature_vitrification": [
+        "0"
+    ],
+    "version": "1.7.0.2"
+}

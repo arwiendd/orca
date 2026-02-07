@@ -1,0 +1,45 @@
+{
+    "before_layer_change_gcode": "",
+    "deretraction_speed": [
+        "50"
+    ],
+    "enable_filament_ramming": "0",
+    "fan_speedup_overhangs": "0",
+    "from": "User",
+    "inherits": "Teknomaker Mini 3dcp 1.2 nozzle",
+    "is_custom_defined": "0",
+    "layer_change_gcode": "",
+    "machine_end_gcode": "",
+    "machine_start_gcode": "",
+    "max_layer_height": [
+        "50"
+    ],
+    "min_layer_height": [
+        "50"
+    ],
+    "name": "Teknomaker Mini 3dcp 50mm nozzle",
+    "nozzle_diameter": [
+        "50"
+    ],
+    "nozzle_type": "stainless_steel",
+    "printer_settings_id": "Teknomaker Mini 3dcp 50mm nozzle",
+    "purge_in_prime_tower": "0",
+    "retract_when_changing_layer": [
+        "0"
+    ],
+    "retraction_length": [
+        "5"
+    ],
+    "retraction_speed": [
+        "50"
+    ],
+    "support_air_filtration": "0",
+    "support_chamber_temp_control": "0",
+    "version": "1.9.0.2",
+    "wipe": [
+        "0"
+    ],
+    "z_hop": [
+        "0"
+    ]
+}
