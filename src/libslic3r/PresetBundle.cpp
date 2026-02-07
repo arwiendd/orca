@@ -51,11 +51,11 @@ static std::vector<std::string> s_project_options {
     "filament_map"
 };
 
-//Confabric: use Custom as fallback (Confabric profiles still available)
-const char *PresetBundle::ORCA_DEFAULT_BUNDLE = "Custom";
-const char *PresetBundle::ORCA_DEFAULT_PRINTER_MODEL = "Custom";
-const char *PresetBundle::ORCA_DEFAULT_PRINTER_VARIANT = "0.4";
-const char *PresetBundle::ORCA_DEFAULT_FILAMENT = "Default Filament";
+//Confabric: set Confabric as default bundle
+const char *PresetBundle::ORCA_DEFAULT_BUNDLE = "Confabric";
+const char *PresetBundle::ORCA_DEFAULT_PRINTER_MODEL = "Creter MINI";
+const char *PresetBundle::ORCA_DEFAULT_PRINTER_VARIANT = "40mm";
+const char *PresetBundle::ORCA_DEFAULT_FILAMENT = "Concem K1";
 const char *PresetBundle::ORCA_FILAMENT_LIBRARY = "OrcaFilamentLibrary";
 
 DynamicPrintConfig PresetBundle::construct_full_config(

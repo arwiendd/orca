@@ -6,62 +6,34 @@
     "setting_id": "CFCONCK1",
     "filament_id": "CFCK1",
     "instantiation": "true",
-    "filament_type": [
-        "Concrete"
-    ],
-    "filament_vendor": [
-        "Confabric"
-    ],
-    "filament_cost": [
-        "50"
-    ],
-    "filament_density": [
-        "2.3"
-    ],
-    "filament_flow_ratio": [
-        "1.0"
-    ],
-    "filament_max_volumetric_speed": [
-        "500"
-    ],
-    "nozzle_temperature": [
-        "0"
-    ],
-    "nozzle_temperature_initial_layer": [
-        "0"
-    ],
-    "cool_plate_temp": [
-        "0"
-    ],
-    "cool_plate_temp_initial_layer": [
-        "0"
-    ],
-    "hot_plate_temp": [
-        "0"
-    ],
-    "hot_plate_temp_initial_layer": [
-        "0"
-    ],
-    "slow_down_layer_time": [
-        "0"
-    ],
-    "fan_min_speed": [
-        "0"
-    ],
-    "fan_max_speed": [
-        "0"
-    ],
-    "overhang_fan_speed": [
-        "0"
-    ],
+    "filament_type": ["Concrete"],
+    "filament_vendor": ["Confabric"],
+    "filament_cost": ["12.5"],
+    "filament_density": ["3.35"],
+    "filament_diameter": ["100"],
+    "filament_flow_ratio": ["1.1"],
+    "filament_max_volumetric_speed": ["2147480000"],
+    "filament_settings_id": ["Concem K1"],
+    "filament_start_gcode": [""],
+    "filament_end_gcode": [""],
+    "nozzle_temperature": ["0"],
+    "nozzle_temperature_initial_layer": ["0"],
+    "nozzle_temperature_range_high": ["0"],
+    "nozzle_temperature_range_low": ["0"],
+    "hot_plate_temp": ["0"],
+    "hot_plate_temp_initial_layer": ["0"],
+    "required_nozzle_HRC": ["0"],
+    "temperature_vitrification": ["0"],
     "compatible_printers": [
-        "Creter MINI 20mm nozzle",
         "Creter MINI 30mm nozzle",
         "Creter MINI 35mm nozzle",
+        "Creter MINI 40mm nozzle",
         "Creter MINI 45mm nozzle",
-        "Creter MINI Pro 20mm nozzle",
-        "Creter MINI Pro 30mm nozzle",
-        "Creter MINI Pro 35mm nozzle",
-        "Creter MINI Pro 45mm nozzle"
+        "Creter MINI 50mm nozzle",
+        "Creter MINI PRO 30mm nozzle",
+        "Creter MINI PRO 35mm nozzle",
+        "Creter MINI PRO 40mm nozzle",
+        "Creter MINI PRO 45mm nozzle",
+        "Creter MINI PRO 50mm nozzle"
     ]
 }

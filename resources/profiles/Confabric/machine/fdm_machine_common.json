@@ -3,63 +3,77 @@
     "name": "fdm_machine_common",
     "from": "system",
     "instantiation": "false",
-    "gcode_flavor": "marlin",
+    "gcode_flavor": "klipper",
+    "bed_exclude_area": ["0x0"],
+    "before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]\nG92 E0\n",
+    "change_filament_gcode": "",
+    "cooling_tube_length": "5",
+    "cooling_tube_retraction": "91.5",
+    "default_filament_profile": ["Concem K1"],
+    "default_print_profile": "process template @Creter",
+    "deretraction_speed": ["30"],
+    "emit_machine_limits_to_gcode": "1",
+    "enable_filament_ramming": "0",
+    "extruder_clearance_height_to_lid": "140",
+    "extruder_clearance_height_to_rod": "36",
+    "extruder_clearance_radius": "65",
+    "extruder_colour": ["#009789"],
+    "extruder_offset": ["0x0"],
+    "fan_kickstart": "0",
+    "fan_speedup_overhangs": "0",
+    "fan_speedup_time": "0",
+    "layer_change_gcode": ";AFTER_LAYER_CHANGE\n;[layer_z]",
+    "machine_end_gcode": "PRINT_END",
+    "machine_max_acceleration_e": ["5000", "5000"],
+    "machine_max_acceleration_extruding": ["20000", "20000"],
+    "machine_max_acceleration_retracting": ["5000", "5000"],
+    "machine_max_acceleration_travel": ["20000", "20000"],
+    "machine_max_acceleration_x": ["3000", "20000"],
+    "machine_max_acceleration_y": ["3000", "20000"],
+    "machine_max_acceleration_z": ["10", "200"],
+    "machine_max_jerk_e": ["2.5", "2.5"],
+    "machine_max_jerk_x": ["9", "9"],
+    "machine_max_jerk_y": ["9", "9"],
+    "machine_max_jerk_z": ["0.2", "0.4"],
+    "machine_max_speed_e": ["25", "25"],
+    "machine_max_speed_x": ["300", "200"],
+    "machine_max_speed_y": ["300", "200"],
+    "machine_max_speed_z": ["5", "12"],
+    "machine_min_extruding_rate": ["0", "0"],
+    "machine_min_travel_rate": ["0", "0"],
+    "machine_pause_gcode": "PAUSE",
+    "machine_start_gcode": "START_PRINT",
+    "max_layer_height": ["50"],
+    "min_layer_height": ["5"],
+    "nozzle_type": "stainless_steel",
+    "parking_pos_retraction": "92",
+    "printer_notes": "",
+    "printer_structure": "undefine",
+    "printer_technology": "FFF",
+    "purge_in_prime_tower": "0",
+    "retract_before_wipe": ["0%"],
+    "retract_length_toolchange": ["0"],
+    "retract_lift_above": ["0"],
+    "retract_lift_below": ["0"],
+    "retract_lift_enforce": ["All Surfaces"],
+    "retract_restart_extra": ["0"],
+    "retract_restart_extra_toolchange": ["0"],
+    "retract_when_changing_layer": ["1"],
+    "retraction_length": ["0"],
+    "retraction_minimum_travel": ["1"],
+    "retraction_speed": ["50"],
+    "scan_first_layer": "0",
+    "silent_mode": "0",
     "single_extruder_multi_material": "0",
-    "machine_max_acceleration_e": [
-        "1000"
-    ],
-    "machine_max_acceleration_extruding": [
-        "500"
-    ],
-    "machine_max_acceleration_retracting": [
-        "500"
-    ],
-    "machine_max_acceleration_travel": [
-        "500"
-    ],
-    "machine_max_acceleration_x": [
-        "500"
-    ],
-    "machine_max_acceleration_y": [
-        "500"
-    ],
-    "machine_max_acceleration_z": [
-        "100"
-    ],
-    "machine_max_jerk_e": [
-        "5"
-    ],
-    "machine_max_jerk_x": [
-        "10"
-    ],
-    "machine_max_jerk_y": [
-        "10"
-    ],
-    "machine_max_jerk_z": [
-        "2"
-    ],
-    "machine_max_speed_e": [
-        "50"
-    ],
-    "machine_max_speed_x": [
-        "200"
-    ],
-    "machine_max_speed_y": [
-        "200"
-    ],
-    "machine_max_speed_z": [
-        "20"
-    ],
-    "retraction_minimum_travel": [
-        "5"
-    ],
-    "retract_before_wipe": [
-        "0%"
-    ],
-    "retract_when_changing_layer": [
-        "1"
-    ],
     "support_air_filtration": "0",
     "support_chamber_temp_control": "0",
-    "enable_filament_ramming": "0"
+    "thumbnails": "300x300/PNG",
+    "thumbnails_format": "PNG",
+    "use_firmware_retraction": "1",
+    "use_relative_e_distances": "1",
+    "wipe": ["0"],
+    "wipe_distance": ["1"],
+    "z_hop": ["5"],
+    "z_hop_types": ["Normal Lift"],
+    "z_offset": "0"
 }

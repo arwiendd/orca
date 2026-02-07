@@ -2,15 +2,15 @@
     "name": "Confabric",
     "version": "01.00.00.00",
     "force_update": "0",
-    "description": "Confabric Concrete 3D Printer configurations",
+    "description": "Confabric Creter Serisi Beton 3D Yazıcı Konfigürasyonları",
     "machine_model_list": [
         {
             "name": "Creter MINI",
             "sub_path": "machine/Creter MINI.json"
         },
         {
-            "name": "Creter MINI Pro",
-            "sub_path": "machine/Creter MINI Pro.json"
+            "name": "Creter MINI PRO",
+            "sub_path": "machine/Creter MINI PRO.json"
         }
     ],
     "process_list": [
@@ -19,20 +19,8 @@
             "sub_path": "process/fdm_process_common.json"
         },
         {
-            "name": "5mm Layer @Creter MINI",
-            "sub_path": "process/5mm Layer @Creter MINI.json"
-        },
-        {
-            "name": "10mm Layer @Creter MINI",
-            "sub_path": "process/10mm Layer @Creter MINI.json"
-        },
-        {
-            "name": "5mm Layer @Creter MINI Pro",
-            "sub_path": "process/5mm Layer @Creter MINI Pro.json"
-        },
-        {
-            "name": "10mm Layer @Creter MINI Pro",
-            "sub_path": "process/10mm Layer @Creter MINI Pro.json"
+            "name": "process template @Creter",
+            "sub_path": "process/process template @Creter.json"
         }
     ],
     "filament_list": [
@@ -51,10 +39,6 @@
             "sub_path": "machine/fdm_machine_common.json"
         },
         {
-            "name": "Creter MINI 20mm nozzle",
-            "sub_path": "machine/Creter MINI 20mm nozzle.json"
-        },
-        {
             "name": "Creter MINI 30mm nozzle",
             "sub_path": "machine/Creter MINI 30mm nozzle.json"
         },
@@ -63,24 +47,36 @@
             "sub_path": "machine/Creter MINI 35mm nozzle.json"
         },
         {
+            "name": "Creter MINI 40mm nozzle",
+            "sub_path": "machine/Creter MINI 40mm nozzle.json"
+        },
+        {
             "name": "Creter MINI 45mm nozzle",
             "sub_path": "machine/Creter MINI 45mm nozzle.json"
         },
         {
-            "name": "Creter MINI Pro 20mm nozzle",
-            "sub_path": "machine/Creter MINI Pro 20mm nozzle.json"
+            "name": "Creter MINI 50mm nozzle",
+            "sub_path": "machine/Creter MINI 50mm nozzle.json"
         },
         {
-            "name": "Creter MINI Pro 30mm nozzle",
-            "sub_path": "machine/Creter MINI Pro 30mm nozzle.json"
+            "name": "Creter MINI PRO 30mm nozzle",
+            "sub_path": "machine/Creter MINI PRO 30mm nozzle.json"
         },
         {
-            "name": "Creter MINI Pro 35mm nozzle",
-            "sub_path": "machine/Creter MINI Pro 35mm nozzle.json"
+            "name": "Creter MINI PRO 35mm nozzle",
+            "sub_path": "machine/Creter MINI PRO 35mm nozzle.json"
         },
         {
-            "name": "Creter MINI Pro 45mm nozzle",
-            "sub_path": "machine/Creter MINI Pro 45mm nozzle.json"
+            "name": "Creter MINI PRO 40mm nozzle",
+            "sub_path": "machine/Creter MINI PRO 40mm nozzle.json"
+        },
+        {
+            "name": "Creter MINI PRO 45mm nozzle",
+            "sub_path": "machine/Creter MINI PRO 45mm nozzle.json"
+        },
+        {
+            "name": "Creter MINI PRO 50mm nozzle",
+            "sub_path": "machine/Creter MINI PRO 50mm nozzle.json"
         }
     ]
 }

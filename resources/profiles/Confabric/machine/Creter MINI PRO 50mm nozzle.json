@@ -1,0 +1,15 @@
+{
+    "type": "machine",
+    "name": "Creter MINI PRO 50mm nozzle",
+    "inherits": "fdm_machine_common",
+    "from": "system",
+    "setting_id": "CFCMP50",
+    "instantiation": "true",
+    "printer_model": "Creter MINI PRO",
+    "printer_variant": "50mm",
+    "nozzle_diameter": ["50"],
+    "printable_area": ["0x0", "2200x0", "2200x1600", "0x1600"],
+    "printable_height": "1500",
+    "default_print_profile": "process template @Creter",
+    "default_filament_profile": ["Concem K1"]
+}
