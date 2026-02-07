@@ -1089,6 +1089,7 @@ int GuideFrame::LoadProfileData()
         loaded_vendors.insert(PresetBundle::ORCA_FILAMENT_LIBRARY);
 
         //load custom bundle from user data path
+        // Confabric: Only load Confabric vendor profiles
         boost::filesystem::directory_iterator endIter;
         for (boost::filesystem::directory_iterator iter(vendor_dir); iter != endIter; iter++) {
             if (!boost::filesystem::is_directory(*iter)) {
@@ -1098,6 +1099,10 @@ int GuideFrame::LoadProfileData()
 
                 wxString strExtension = from_u8(iter->path().string()).AfterLast('.').Lower();
                 if(strExtension.CmpNoCase("json") != 0 || loaded_vendors.find(w2s(strVendor)) != loaded_vendors.end())
+                    continue;
+
+                // Confabric: Skip non-Confabric vendors
+                if (strVendor != "Confabric")
                     continue;
 
                 LoadProfileFamily(w2s(strVendor), iter->path().string());
@@ -1115,6 +1120,10 @@ int GuideFrame::LoadProfileData()
                 strVendor          = strVendor.AfterLast('/');
                 wxString strExtension = from_u8(iter->path().string()).AfterLast('.').Lower();
                 if (strExtension.CmpNoCase("json") != 0 || loaded_vendors.find(w2s(strVendor)) != loaded_vendors.end())
+                    continue;
+
+                // Confabric: Skip non-Confabric vendors
+                if (strVendor != "Confabric")
                     continue;
 
                 LoadProfileFamily(w2s(strVendor), iter->path().string());

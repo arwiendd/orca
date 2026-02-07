@@ -139,12 +139,16 @@ BundleMap BundleMap::load()
 
     // Load the other bundles in the datadir/vendor directory
     // and then additionally from resources/profiles.
+    // Confabric: Only load Confabric and OrcaFilamentLibrary vendors
     bool is_in_resources = false;
     for (auto dir : { &vendor_dir, &rsrc_vendor_dir }) {
         for (const auto &dir_entry : boost::filesystem::directory_iterator(*dir)) {
             //BBS: add json logic for vendor bundle
             if (Slic3r::is_json_file(dir_entry.path().string())) {
                 std::string id = dir_entry.path().stem().string();  // stem() = filename() without the trailing ".json" part
+
+                // Confabric: Skip non-Confabric vendors (except OrcaFilamentLibrary)
+                if (id != "Confabric" && id != PresetBundle::ORCA_FILAMENT_LIBRARY) { continue; }
 
                 // Don't load this bundle if we've already loaded it.
                 if (res.find(id) != res.end()) { continue; }

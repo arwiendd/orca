@@ -1454,6 +1454,7 @@ std::pair<PresetsConfigSubstitutions, std::string> PresetBundle::load_system_pre
     bool                        first = true;
     std::vector<std::string> vendor_names;
     // store all vendor names in vendor_names
+    // Confabric: Only load Confabric and OrcaFilamentLibrary vendors
     for (auto& dir_entry : boost::filesystem::directory_iterator(dir)) {
         std::string vendor_file = dir_entry.path().string();
         if (!Slic3r::is_json_file(vendor_file))
@@ -1463,6 +1464,11 @@ std::pair<PresetsConfigSubstitutions, std::string> PresetBundle::load_system_pre
 
         // Remove the .json suffix.
         vendor_name.erase(vendor_name.size() - 5);
+
+        // Confabric: Skip non-Confabric vendors (except OrcaFilamentLibrary)
+        if (vendor_name != "Confabric" && vendor_name != ORCA_FILAMENT_LIBRARY)
+            continue;
+
         vendor_names.push_back(vendor_name);
     }
     // Move ORCA_FILAMENT_LIBRARY to the beginning of the list
@@ -1536,12 +1542,18 @@ std::pair<PresetsConfigSubstitutions, std::string> PresetBundle::load_system_mod
     boost::filesystem::path    dir = (boost::filesystem::path(resources_dir()) / "profiles").make_preferred();
     PresetsConfigSubstitutions substitutions;
     std::string                errors_cummulative;
+    // Confabric: Only load Confabric and OrcaFilamentLibrary vendors
     for (auto &dir_entry : boost::filesystem::directory_iterator(dir)) {
         std::string vendor_file = dir_entry.path().string();
         if (Slic3r::is_json_file(vendor_file)) {
             std::string vendor_name = dir_entry.path().filename().string();
             // Remove the .json suffix.
             vendor_name.erase(vendor_name.size() - 5);
+
+            // Confabric: Skip non-Confabric vendors (except OrcaFilamentLibrary)
+            if (vendor_name != "Confabric" && vendor_name != ORCA_FILAMENT_LIBRARY)
+                continue;
+
             try {
                 // Load the config bundle, flatten it.
                 append(substitutions, load_vendor_configs_from_json(dir.string(), vendor_name, PresetBundle::LoadVendorOnly, compatibility_rule).first);
@@ -1571,12 +1583,18 @@ std::pair<PresetsConfigSubstitutions, std::string> PresetBundle::load_system_fil
     PresetsConfigSubstitutions substitutions;
     std::string                errors_cummulative;
     bool                       first = true;
+    // Confabric: Only load Confabric and OrcaFilamentLibrary vendors
     for (auto &dir_entry : boost::filesystem::directory_iterator(dir)) {
         std::string vendor_file = dir_entry.path().string();
         if (Slic3r::is_json_file(vendor_file)) {
             std::string vendor_name = dir_entry.path().filename().string();
             // Remove the .json suffix.
             vendor_name.erase(vendor_name.size() - 5);
+
+            // Confabric: Skip non-Confabric vendors (except OrcaFilamentLibrary)
+            if (vendor_name != "Confabric" && vendor_name != ORCA_FILAMENT_LIBRARY)
+                continue;
+
             try {
                 if (first) {
                     // Reset this PresetBundle and load the first vendor config.

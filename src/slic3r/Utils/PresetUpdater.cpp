@@ -1102,6 +1102,7 @@ void PresetUpdater::priv::check_installed_vendor_profiles() const
     std::set<std::string> bundles;
     // Orca: always install filament library
     bundles.insert(PresetBundle::ORCA_FILAMENT_LIBRARY);
+    // Confabric: Only process Confabric and OrcaFilamentLibrary vendors
     for (auto &dir_entry : boost::filesystem::directory_iterator(rsrc_path)) {
         const auto &path = dir_entry.path();
         std::string file_path = path.string();
@@ -1111,6 +1112,10 @@ void PresetUpdater::priv::check_installed_vendor_profiles() const
             // Remove the .json suffix.
             vendor_name.erase(vendor_name.size() - 5);
             if (bundles.find(vendor_name) != bundles.end())continue;
+
+            // Confabric: Skip non-Confabric vendors (except OrcaFilamentLibrary)
+            if (vendor_name != "Confabric" && vendor_name != PresetBundle::ORCA_FILAMENT_LIBRARY)
+                continue;
 
             const auto is_vendor_enabled = (vendor_name == PresetBundle::ORCA_DEFAULT_BUNDLE) // always update configs from resource to vendor for ORCA_DEFAULT_BUNDLE
                                            || (enabled_vendors.find(vendor_name) != enabled_vendors.end());
