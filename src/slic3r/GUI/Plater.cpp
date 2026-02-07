@@ -2393,11 +2393,12 @@ void Sidebar::update_all_preset_comboboxes()
 
     }
 
+    // Confabric: Always show "Kuru Karışım" for concrete printers
     if (cfg.opt_bool("pellet_modded_printer")) {
 		p->m_staticText_filament_settings->SetLabel(_L("Pellets"));
         p->m_filament_icon->SetBitmap_("pellets");
     } else {
-		p->m_staticText_filament_settings->SetLabel(_L("Filament"));
+		p->m_staticText_filament_settings->SetLabel(_L("Kuru Karışım"));
         p->m_filament_icon->SetBitmap_("filament");
     }
 

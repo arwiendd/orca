@@ -248,10 +248,12 @@ void BBLTopbar::Init(wxFrame* parent)
 
     this->AddSpacer(FromDIP(10));
 
-    wxBitmap calib_bitmap          = create_scaled_bitmap("calib_sf", nullptr, TOPBAR_ICON_SIZE);
-    wxBitmap calib_bitmap_inactive = create_scaled_bitmap("calib_sf_inactive", nullptr, TOPBAR_ICON_SIZE);
-    m_calib_item                   = this->AddTool(ID_CALIB, _L("Calibration"), calib_bitmap);
-    m_calib_item->SetDisabledBitmap(calib_bitmap_inactive);
+    // Confabric: Calibration removed - not applicable for concrete printers
+    // wxBitmap calib_bitmap          = create_scaled_bitmap("calib_sf", nullptr, TOPBAR_ICON_SIZE);
+    // wxBitmap calib_bitmap_inactive = create_scaled_bitmap("calib_sf_inactive", nullptr, TOPBAR_ICON_SIZE);
+    // m_calib_item                   = this->AddTool(ID_CALIB, _L("Calibration"), calib_bitmap);
+    // m_calib_item->SetDisabledBitmap(calib_bitmap_inactive);
+    m_calib_item = nullptr;
 
     this->AddSpacer(FromDIP(10));
     this->AddStretchSpacer(1);
@@ -387,6 +389,8 @@ void BBLTopbar::SaveNormalRect()
 
 void BBLTopbar::ShowCalibrationButton(bool show)
 {
+    // Confabric: Calibration removed
+    if (!m_calib_item) return;
     m_calib_item->GetSizerItem()->Show(show);
     m_sizer->Layout();
     if (!show)

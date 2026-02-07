@@ -380,7 +380,7 @@ void show_substitutions_info(const PresetsConfigSubstitutions& presets_config_su
 		switch (type) {
 			case Preset::TYPE_PRINT:			return _L("Process");
 			// BBS: remove TYPE_SLA_PRINT
-			case Preset::TYPE_FILAMENT:			return _L("Filament");
+			case Preset::TYPE_FILAMENT:			return _L("Kuru Karışım"); // Confabric: Filament -> Kuru Karışım
 			// BBS: remove TYPE_SLA_MATERIAL
 			case Preset::TYPE_PRINTER: 			return _L("Machine");
 			// BBS: remove TYPE_PHYSICAL_PRINTER
