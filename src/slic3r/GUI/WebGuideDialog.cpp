@@ -1101,10 +1101,11 @@ int GuideFrame::LoadProfileData()
                 if(strExtension.CmpNoCase("json") != 0 || loaded_vendors.find(w2s(strVendor)) != loaded_vendors.end())
                     continue;
 
-                // Confabric: Skip non-Confabric vendors
-                if (strVendor != "Confabric")
+                // Confabric: Skip non-Confabric vendors (case-insensitive)
+                if (strVendor.CmpNoCase("Confabric") != 0)
                     continue;
 
+                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Loading Confabric vendor from vendor_dir: " << iter->path().string();
                 LoadProfileFamily(w2s(strVendor), iter->path().string());
                 loaded_vendors.insert(w2s(strVendor));
             }
@@ -1122,10 +1123,11 @@ int GuideFrame::LoadProfileData()
                 if (strExtension.CmpNoCase("json") != 0 || loaded_vendors.find(w2s(strVendor)) != loaded_vendors.end())
                     continue;
 
-                // Confabric: Skip non-Confabric vendors
-                if (strVendor != "Confabric")
+                // Confabric: Skip non-Confabric vendors (case-insensitive)
+                if (strVendor.CmpNoCase("Confabric") != 0)
                     continue;
 
+                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Loading Confabric vendor from rsrc_vendor_dir: " << iter->path().string();
                 LoadProfileFamily(w2s(strVendor), iter->path().string());
                 loaded_vendors.insert(w2s(strVendor));
             }
@@ -1386,6 +1388,8 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
                         continue;
                     }
 
+                    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Filament " << s1 << " GetFilamentInfo OK, Vendor:" << sV << ", Type:" << sT;
+
                     OneFF["vendor"] = sV;
                     OneFF["type"]   = sT;
 
@@ -1397,6 +1401,7 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
                     for (int i = 0; i < nPrinter; i++)
                     {
                         std::string sP = pPrinters.at(i);
+                        BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Checking compatible printer: " << sP << ", exists in machines: " << (m_ProfileJson["machine"].contains(sP) ? "YES" : "NO");
                         if (m_ProfileJson["machine"].contains(sP))
                         {
                             std::string mModel = m_ProfileJson["machine"][sP]["model"];
@@ -1410,6 +1415,7 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
                     OneFF["models"]    = ModelList;
                     OneFF["selected"] = 0;
 
+                    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Added filament " << s1 << " with models: " << ModelList;
                     m_ProfileJson["filament"][s1] = OneFF;
                 } else
                     continue;
