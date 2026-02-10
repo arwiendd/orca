@@ -351,10 +351,12 @@ public:
         int width = bmp.GetWidth();
 		int height = bmp.GetHeight();
 
-		// Logo
+		// Logo - Confabric: Use PNG instead of SVG for better compatibility
         BitmapCache bmp_cache;
-        wxBitmap logo_bmp = *bmp_cache.load_svg(is_dark ? "splash_logo_dark" : "splash_logo", width, height);  // use with full width & height
-        memDc.DrawBitmap(logo_bmp, 0, 0, true);
+        wxBitmap* logo_bmp_ptr = bmp_cache.load_png("splash_logo", width, height);
+        if (logo_bmp_ptr && logo_bmp_ptr->IsOk()) {
+            memDc.DrawBitmap(*logo_bmp_ptr, 0, 0, true);
+        }
 
         // Version
         memDc.SetFont(m_constant_text.version_font);
