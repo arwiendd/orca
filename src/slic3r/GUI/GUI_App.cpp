@@ -353,9 +353,13 @@ public:
 
 		// Logo - Confabric: Use PNG instead of SVG for better compatibility
         BitmapCache bmp_cache;
+        BOOST_LOG_TRIVIAL(info) << "SplashScreen: Loading splash_logo.png, target size: " << width << "x" << height;
         wxBitmap* logo_bmp_ptr = bmp_cache.load_png("splash_logo", width, height);
         if (logo_bmp_ptr && logo_bmp_ptr->IsOk()) {
+            BOOST_LOG_TRIVIAL(info) << "SplashScreen: PNG loaded successfully, drawing...";
             memDc.DrawBitmap(*logo_bmp_ptr, 0, 0, true);
+        } else {
+            BOOST_LOG_TRIVIAL(error) << "SplashScreen: Failed to load splash_logo.png!";
         }
 
         // Version
