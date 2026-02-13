@@ -361,9 +361,8 @@ void OG_CustomCtrl::OnMotion(wxMouseEvent& event)
         if (!line.is_visible) continue;
         line.is_focused = is_point_in_rect(pos, line.rect_label);
         if (line.is_focused) {
-            if (!suppress_hyperlinks && !line.og_line.label_path.empty())
-                tooltip = OptionsGroup::get_url(line.og_line.label_path) + "\n\n";
-            tooltip += line.og_line.label_tooltip;
+            // Confabric: Don't show wiki URL in tooltip, only show the description
+            tooltip = line.og_line.label_tooltip;
             // BBS: markdown tip
             focusedLine = &line;
             markdowntip = line.og_line.label.empty() 

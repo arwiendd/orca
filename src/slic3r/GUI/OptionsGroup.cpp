@@ -1318,7 +1318,8 @@ wxString OptionsGroup::get_url(const std::string& path_end)
 
 bool OptionsGroup::launch_browser(const std::string& path_end)
 {
-    return wxLaunchDefaultBrowser(OptionsGroup::get_url(path_end));
+    // Confabric: Disable wiki links - only show tooltip on hover
+    return false;
 }
 
 
