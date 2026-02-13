@@ -325,7 +325,8 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
     // map of color replaces
     std::map<std::string, std::string> replaces;
     replaces["\"#0x00AE42\""] = "\"#f6cc1d\"";
-    replaces["\"#00FF00\""] = "\"#52c7b8\"";
+    replaces["\"#009688\""] = "\"#f6cc1d\"";  // Confabric: Replace teal/green with gold
+    replaces["\"#00FF00\""] = "\"#f6cc1d\"";  // Confabric: Replace pure green with gold
     if (dark_mode) {
         replaces["\"#262E30\""] = "\"#EFEFF0\"";
         replaces["\"#323A3D\""] = "\"#B3B3B5\"";
@@ -334,7 +335,8 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
         replaces["\"#CECECE\""] = "\"#54545B\"";
         replaces["\"#6B6B6B\""] = "\"#818182\"";
         replaces["\"#909090\""] = "\"#FFFFFF\"";
-        replaces["\"#00FF00\""] = "\"#FF0000\"";
+        replaces["\"#00FF00\""] = "\"#c9a00a\"";  // Confabric: dark gold for dark mode
+        replaces["\"#009688\""] = "\"#c9a00a\"";  // Confabric: dark gold for dark mode
         replaces["\"#f6cc1d\""] = "\"#c9a00a\"";
         replaces["\"#F1F1F1\""] = "\"#36363B\"";
         replaces["#DBDBDB"] = "#4A4A51"; // ORCA border color
