@@ -6694,45 +6694,7 @@ bool GLCanvas3D::_init_main_toolbar()
     if (!m_main_toolbar.add_item(item))
         return false;
 
-    item.name = "splitobjects";
-    item.icon_filename = m_is_dark ? "split_objects_dark.svg" : "split_objects.svg";
-    item.tooltip = _utf8(L("Split to objects"));
-    item.sprite_id++;
-    item.left.render_callback = nullptr;
-    item.left.action_callback = [this]() { if (m_canvas != nullptr) wxPostEvent(m_canvas, SimpleEvent(EVT_GLTOOLBAR_SPLIT_OBJECTS)); };
-    item.visibility_callback = GLToolbarItem::Default_Visibility_Callback;
-    item.left.toggable = false;
-    item.enabling_callback = []()->bool { return wxGetApp().plater()->can_split_to_objects(); };
-    if (!m_main_toolbar.add_item(item))
-        return false;
-
-    item.name = "splitvolumes";
-    item.icon_filename = m_is_dark ? "split_parts_dark.svg" : "split_parts.svg";
-    item.tooltip = _utf8(L("Split to parts"));
-    item.sprite_id++;
-    item.left.action_callback = [this]() { if (m_canvas != nullptr) wxPostEvent(m_canvas, SimpleEvent(EVT_GLTOOLBAR_SPLIT_VOLUMES)); };
-    item.visibility_callback = GLToolbarItem::Default_Visibility_Callback;
-    item.enabling_callback = []()->bool { return wxGetApp().plater()->can_split_to_volumes(); };
-    if (!m_main_toolbar.add_item(item))
-        return false;
-
-    item.name = "layersediting";
-    item.icon_filename = m_is_dark ? "toolbar_variable_layer_height_dark.svg" : "toolbar_variable_layer_height.svg";
-    item.tooltip = _utf8(L("Variable layer height"));
-    item.sprite_id++;
-    item.left.toggable = true; // ORCA Closes popup if other toolbar icon clicked and it allows closing popup when clicked its button
-    item.left.action_callback = [this]() { if (m_canvas != nullptr) wxPostEvent(m_canvas, SimpleEvent(EVT_GLTOOLBAR_LAYERSEDITING)); };
-    item.visibility_callback = [this]()->bool {
-        bool res = current_printer_technology() == ptFFF;
-        // turns off if changing printer technology
-        if (!res && m_main_toolbar.is_item_visible("layersediting") && m_main_toolbar.is_item_pressed("layersediting"))
-            force_main_toolbar_left_action(get_main_toolbar_item_id("layersediting"));
-
-        return res;
-    };
-    item.enabling_callback = []()->bool { return wxGetApp().plater()->can_layers_editing(); };
-    if (!m_main_toolbar.add_item(item))
-        return false;
+    // Confabric: Removed Split objects, Split parts, and Variable layer height buttons for concrete printing
 
     return true;
 }
