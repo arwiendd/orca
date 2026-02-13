@@ -59,7 +59,7 @@ static StateColor btn_bg_gray(std::pair<wxColour, int>(wxColour(194, 194, 194), 
                               std::pair<wxColour, int>(wxColour(194, 194, 194), StateColor::Normal));
 
 static StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(212, 173, 10), StateColor::Pressed),
-                               std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+                               std::pair<wxColour, int>(wxColour(255, 220, 80), StateColor::Hovered),
                                std::pair<wxColour, int>(wxColour(246, 204, 29), StateColor::Normal));
 
 PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _L("Skip Objects"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
