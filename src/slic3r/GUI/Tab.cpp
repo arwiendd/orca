@@ -2339,14 +2339,7 @@ void TabPrint::build()
         optgroup->append_single_option_line("hole_to_polyhole_threshold", "quality_settings_precision#polyholes");
         optgroup->append_single_option_line("hole_to_polyhole_twisted", "quality_settings_precision#polyholes");
 
-        optgroup = page->new_optgroup(L("Ironing"), L"param_ironing");
-        optgroup->append_single_option_line("ironing_type", "quality_settings_ironing#type");
-        optgroup->append_single_option_line("ironing_pattern", "quality_settings_ironing#pattern");
-        optgroup->append_single_option_line("ironing_flow", "quality_settings_ironing#flow");
-        optgroup->append_single_option_line("ironing_spacing", "quality_settings_ironing#line-spacing");
-        optgroup->append_single_option_line("ironing_inset", "quality_settings_ironing#inset");
-        optgroup->append_single_option_line("ironing_angle", "quality_settings_ironing#angle-offset");
-        optgroup->append_single_option_line("ironing_angle_fixed", "quality_settings_ironing#fixed-angle");
+    // Confabric: Removed Ironing section for concrete printing
 
         optgroup = page->new_optgroup(L("Wall generator"), L"param_wall_generator");
         optgroup->append_single_option_line("wall_generator", "quality_settings_wall_generator");
@@ -2389,26 +2382,7 @@ void TabPrint::build()
         option.opt.height = 15;
         optgroup->append_single_option_line(option, "quality_settings_wall_and_surfaces#small-area-flow-compensation");
 
-        optgroup = page->new_optgroup(L("Bridging"), L"param_bridge");
-        optgroup->append_single_option_line("bridge_flow", "quality_settings_bridging#flow-ratio");
-	    optgroup->append_single_option_line("internal_bridge_flow", "quality_settings_bridging#flow-ratio");
-        optgroup->append_single_option_line("bridge_density", "quality_settings_bridging#bridge-density");
-        optgroup->append_single_option_line("internal_bridge_density", "quality_settings_bridging#bridge-density");
-        optgroup->append_single_option_line("thick_bridges", "quality_settings_bridging#thick-bridges");
-        optgroup->append_single_option_line("thick_internal_bridges", "quality_settings_bridging#thick-bridges");
-        optgroup->append_single_option_line("enable_extra_bridge_layer", "quality_settings_bridging#extra-bridge-layers");
-        optgroup->append_single_option_line("dont_filter_internal_bridges", "quality_settings_bridging#filter-out-small-internal-bridges");
-        optgroup->append_single_option_line("counterbore_hole_bridging", "quality_settings_bridging#bridge-counterbore-hole");
-
-        optgroup = page->new_optgroup(L("Overhangs"), L"param_overhang");
-        optgroup->append_single_option_line("detect_overhang_wall", "quality_settings_overhangs#detect-overhang-wall");
-        optgroup->append_single_option_line("make_overhang_printable", "quality_settings_overhangs#make-overhang-printable");
-        optgroup->append_single_option_line("make_overhang_printable_angle", "quality_settings_overhangs#maximum-angle");
-        optgroup->append_single_option_line("make_overhang_printable_hole_size", "quality_settings_overhangs#hole-area");
-        optgroup->append_single_option_line("extra_perimeters_on_overhangs", "quality_settings_overhangs#extra-perimeters-on-overhangs");
-        optgroup->append_single_option_line("overhang_reverse", "quality_settings_overhangs#reverse-on-even");
-        optgroup->append_single_option_line("overhang_reverse_internal_only", "quality_settings_overhangs#reverse-internal-only");
-        optgroup->append_single_option_line("overhang_reverse_threshold", "quality_settings_overhangs#reverse-threshold");
+    // Confabric: Removed Bridging and Overhangs sections for concrete printing
 
     page = add_options_page(L("Strength"), "custom-gcode_strength"); // ORCA: icon only visible on placeholders
         optgroup = page->new_optgroup(L("Walls"), L"param_wall");
@@ -2454,16 +2428,7 @@ void TabPrint::build()
         optgroup->append_single_option_line("filter_out_gap_fill", "strength_settings_infill#filter-out-tiny-gaps");
         optgroup->append_single_option_line("infill_wall_overlap", "strength_settings_infill#infill-wall-overlap");
 
-        optgroup = page->new_optgroup(L("Advanced"), L"param_advanced");
-        optgroup->append_single_option_line("align_infill_direction_to_model", "strength_settings_advanced#align-infill-direction-to-model");
-        optgroup->append_single_option_line("extra_solid_infills", "strength_settings_infill#extra-solid-infill");
-        optgroup->append_single_option_line("bridge_angle", "strength_settings_advanced#bridge-infill-direction");
-        optgroup->append_single_option_line("internal_bridge_angle", "strength_settings_advanced#bridge-infill-direction"); // ORCA: Internal bridge angle override
-        optgroup->append_single_option_line("minimum_sparse_infill_area", "strength_settings_advanced#minimum-sparse-infill-threshold");
-        optgroup->append_single_option_line("infill_combination", "strength_settings_advanced#infill-combination");
-        optgroup->append_single_option_line("infill_combination_max_layer_height", "strength_settings_advanced#max-layer-height");
-        optgroup->append_single_option_line("detect_narrow_internal_solid_infill", "strength_settings_advanced#detect-narrow-internal-solid-infill");
-        optgroup->append_single_option_line("ensure_vertical_shell_thickness", "strength_settings_advanced#ensure-vertical-shell-thickness");
+    // Confabric: Removed Strength > Advanced section for concrete printing
 
     page = add_options_page(L("Speed"), "custom-gcode_speed"); // ORCA: icon only visible on placeholders
         optgroup = page->new_optgroup(L("Initial layer speed"), L"param_speed_first", 15);
