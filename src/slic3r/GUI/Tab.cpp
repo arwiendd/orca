@@ -2654,24 +2654,7 @@ void TabPrint::build()
     #endif // CONFABRIC_DISABLE_MULTIMATERIAL
 
     page = add_options_page(L("Others"), "custom-gcode_other"); // ORCA: icon only visible on placeholders
-        optgroup = page->new_optgroup(L("Skirt"), L"param_skirt");
-        optgroup->append_single_option_line("skirt_loops", "others_settings_skirt#loops");
-        optgroup->append_single_option_line("skirt_type", "others_settings_skirt#type");
-        optgroup->append_single_option_line("min_skirt_length", "others_settings_skirt#minimum-extrusion-length");
-        optgroup->append_single_option_line("skirt_distance", "others_settings_skirt#distance");
-        optgroup->append_single_option_line("skirt_start_angle", "others_settings_skirt#start-point");
-        optgroup->append_single_option_line("skirt_speed", "others_settings_skirt#speed");
-        optgroup->append_single_option_line("skirt_height", "others_settings_skirt#height");
-        optgroup->append_single_option_line("draft_shield", "others_settings_skirt#shield");
-        optgroup->append_single_option_line("single_loop_draft_shield", "others_settings_skirt#single-loop-after-first-layer");
-
-        optgroup = page->new_optgroup(L("Brim"), L"param_adhension");
-        optgroup->append_single_option_line("brim_type", "others_settings_brim#type");
-        optgroup->append_single_option_line("brim_width", "others_settings_brim#width");
-        optgroup->append_single_option_line("brim_object_gap", "others_settings_brim#brim-object-gap");
-        optgroup->append_single_option_line("brim_use_efc_outline", "others_settings_brim#brim-use-efc-outline");
-        optgroup->append_single_option_line("brim_ears_max_angle", "others_settings_brim#ear-max-angle");
-        optgroup->append_single_option_line("brim_ears_detection_length", "others_settings_brim#ear-detection-radius");
+    // Confabric: Skirt and Brim sections removed for concrete printing
 
         optgroup = page->new_optgroup(L("Special mode"), L"param_special");
         optgroup->append_single_option_line("slicing_mode", "others_settings_special_mode#slicing-mode");
@@ -2686,16 +2669,7 @@ void TabPrint::build()
         optgroup->append_single_option_line("timelapse_type", "others_settings_special_mode#timelapse");
         optgroup->append_single_option_line("enable_wrapping_detection");
 
-        optgroup = page->new_optgroup(L("Fuzzy Skin"), L"fuzzy_skin");
-        optgroup->append_single_option_line("fuzzy_skin", "others_settings_fuzzy_skin");
-        optgroup->append_single_option_line("fuzzy_skin_mode", "others_settings_fuzzy_skin#fuzzy-skin-mode");
-        optgroup->append_single_option_line("fuzzy_skin_noise_type", "others_settings_fuzzy_skin#noise-type");
-        optgroup->append_single_option_line("fuzzy_skin_point_distance", "others_settings_fuzzy_skin#point-distance");
-        optgroup->append_single_option_line("fuzzy_skin_thickness", "others_settings_fuzzy_skin#skin-thickness");
-        optgroup->append_single_option_line("fuzzy_skin_scale", "others_settings_fuzzy_skin#skin-feature-size");
-        optgroup->append_single_option_line("fuzzy_skin_octaves", "others_settings_fuzzy_skin#skin-noise-octaves");
-        optgroup->append_single_option_line("fuzzy_skin_persistence", "others_settings_fuzzy_skin#skin-noise-persistence");
-        optgroup->append_single_option_line("fuzzy_skin_first_layer", "others_settings_fuzzy_skin#apply-fuzzy-skin-to-first-layer");
+    // Confabric: Fuzzy Skin section removed for concrete printing
 
         optgroup = page->new_optgroup(L("G-code output"), L"param_gcode");
         optgroup->append_single_option_line("reduce_infill_retraction", "others_settings_g_code_output#reduce-infill-retraction");
