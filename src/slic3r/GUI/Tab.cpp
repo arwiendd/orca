@@ -3807,19 +3807,17 @@ void TabFilament::build()
     m_presets = &m_preset_bundle->filaments;
     load_initial_data();
 
-    auto page = add_options_page(L("Filament"), "custom-gcode_filament"); // ORCA: icon only visible on placeholders
+    auto page = add_options_page(L("Malzeme"), "custom-gcode_filament"); // Confabric: Renamed from Filament to Malzeme
         //BBS
         auto optgroup = page->new_optgroup(L("Basic information"), L"param_information");
         optgroup->append_single_option_line("filament_type", "material_basic_information#type"); // ORCA use same width with other elements
         optgroup->append_single_option_line("filament_vendor", "material_basic_information#vendor");
-        optgroup->append_single_option_line("filament_soluble", "material_basic_information#soluble-material");
-        // BBS
-        optgroup->append_single_option_line("filament_is_support", "material_basic_information#support-material");
+        // Confabric: Removed soluble and support material options
         optgroup->append_single_option_line("filament_change_length", "material_basic_information#filament-ramming-length");
 
         //optgroup->append_single_option_line("filament_colour");
         optgroup->append_single_option_line("required_nozzle_HRC", "material_basic_information#required-nozzle-hrc");
-        optgroup->append_single_option_line("default_filament_colour", "material_basic_information#default-color");
+        // Confabric: Removed default_filament_colour
         optgroup->append_single_option_line("filament_diameter", "material_basic_information#diameter");
         optgroup->append_single_option_line("filament_adhesiveness_category", "material_basic_information#adhesiveness-category");
 
@@ -3827,21 +3825,12 @@ void TabFilament::build()
         optgroup->append_single_option_line("filament_shrink", "material_basic_information#shrinkage-xy");
         optgroup->append_single_option_line("filament_shrinkage_compensation_z", "material_basic_information#shrinkage-z");
         optgroup->append_single_option_line("filament_cost", "material_basic_information#price");
-        //BBS
-        optgroup->append_single_option_line("temperature_vitrification", "material_basic_information#softening-temperature");
-        optgroup->append_single_option_line("idle_temperature", "material_basic_information#idle-temperature");
-        Line line = { L("Recommended nozzle temperature"), L("Recommended nozzle temperature range of this filament. 0 means no set") };
-        line.append_option(optgroup->get_option("nozzle_temperature_range_low"));
-        line.append_option(optgroup->get_option("nozzle_temperature_range_high"));
-        optgroup->append_line(line);
+        // Confabric: Removed softening temperature, idle temperature, and recommended nozzle temperature
 
         optgroup->m_on_change = [this, optgroup](t_config_option_key opt_key, boost::any value) {
             DynamicPrintConfig &filament_config = m_preset_bundle->filaments.get_edited_preset().config;
 
             update_dirty();
-            if (!m_postpone_update_ui && (opt_key == "nozzle_temperature_range_low" || opt_key == "nozzle_temperature_range_high")) {
-                m_config_manipulation.check_nozzle_recommended_temperature_range(&filament_config);
-            }
             on_value_change(opt_key, value);
         };
 
@@ -3863,165 +3852,15 @@ void TabFilament::build()
         option.opt.is_code = true;
         option.opt.height = 15;
         optgroup->append_single_option_line(option);
-        //
-
-        optgroup = page->new_optgroup(L("Print chamber temperature"), L"param_chamber_temp");
-        optgroup->append_single_option_line("chamber_temperature", "material_temperatures#print-chamber-temperature");
-        optgroup->append_single_option_line("activate_chamber_temp_control", "material_temperatures#print-chamber-temperature");
-
-        optgroup = page->new_optgroup(L("Print temperature"), L"param_extruder_temp");
-        line = { L("Nozzle"), L("Nozzle temperature when printing") };
-        line.label_path = "material_temperatures#nozzle";
-        line.append_option(optgroup->get_option("nozzle_temperature_initial_layer", 0));
-        line.append_option(optgroup->get_option("nozzle_temperature", 0));
-        optgroup->append_line(line);
-
-        optgroup = page->new_optgroup(L("Bed temperature"), L"param_bed_temp");
-        line = { L("Cool Plate (SuperTack)"),
-                 L("Bed temperature when the Cool Plate SuperTack is installed. A value of 0 means the filament does not support printing on the Cool Plate SuperTack.") };
-        line.label_path = "material_temperatures#bed";
-        line.append_option(optgroup->get_option("supertack_plate_temp_initial_layer"));
-        line.append_option(optgroup->get_option("supertack_plate_temp"));
-        optgroup->append_line(line);
-
-        line = { L("Cool Plate"),
-                 L("Bed temperature when the Cool Plate is installed. A value of 0 means the filament does not support printing on the Cool Plate.") };
-        line.label_path = "material_temperatures#bed";
-        line.append_option(optgroup->get_option("cool_plate_temp_initial_layer"));
-        line.append_option(optgroup->get_option("cool_plate_temp"));
-        optgroup->append_line(line);
-
-        line = { L("Textured Cool Plate"),
-                 L("Bed temperature when the Textured Cool Plate is installed. A value of 0 means the filament does not support printing on the Textured Cool Plate.") };
-        line.label_path = "material_temperatures#bed";
-        line.append_option(optgroup->get_option("textured_cool_plate_temp_initial_layer"));
-        line.append_option(optgroup->get_option("textured_cool_plate_temp"));
-        optgroup->append_line(line);
-
-        line = { L("Engineering Plate"),
-                 L("Bed temperature when the Engineering Plate is installed. A value of 0 means the filament does not support printing on the Engineering Plate.") };
-        line.label_path = "material_temperatures#bed";
-        line.append_option(optgroup->get_option("eng_plate_temp_initial_layer"));
-        line.append_option(optgroup->get_option("eng_plate_temp"));
-        optgroup->append_line(line);
-
-        line = { L("Smooth PEI Plate / High Temp Plate"),
-                 L("Bed temperature when the Smooth PEI Plate/High Temperature Plate is installed. A value of 0 means the filament does not support printing on the Smooth PEI Plate/High Temp Plate.") };
-        line.label_path = "material_temperatures#bed";
-        line.append_option(optgroup->get_option("hot_plate_temp_initial_layer"));
-        line.append_option(optgroup->get_option("hot_plate_temp"));
-        optgroup->append_line(line);
-
-        line = { L("Textured PEI Plate"),
-                 L("Bed temperature when the Textured PEI Plate is installed. A value of 0 means the filament does not support printing on the Textured PEI Plate.") };
-        line.label_path = "material_temperatures#bed";
-        line.append_option(optgroup->get_option("textured_plate_temp_initial_layer"));
-        line.append_option(optgroup->get_option("textured_plate_temp"));
-        optgroup->append_line(line);
-
-        optgroup->m_on_change = [this](t_config_option_key opt_key, boost::any value)
-        {
-            DynamicPrintConfig& filament_config = m_preset_bundle->filaments.get_edited_preset().config;
-
-            update_dirty();
-            /*if (opt_key == "cool_plate_temp" || opt_key == "cool_plate_temp_initial_layer") {
-                m_config_manipulation.check_bed_temperature_difference(BedType::btPC, &filament_config);
-            }
-            else if (opt_key == "eng_plate_temp" || opt_key == "eng_plate_temp_initial_layer") {
-                m_config_manipulation.check_bed_temperature_difference(BedType::btEP, &filament_config);
-            }
-            else if (opt_key == "hot_plate_temp" || opt_key == "hot_plate_temp_initial_layer") {
-                m_config_manipulation.check_bed_temperature_difference(BedType::btPEI, &filament_config);
-            }
-            else if (opt_key == "textured_plate_temp" || opt_key == "textured_plate_temp_initial_layer") {
-                m_config_manipulation.check_bed_temperature_difference(BedType::btPTE, &filament_config);
-            }
-            else */if (opt_key == "nozzle_temperature") {
-                m_config_manipulation.check_nozzle_temperature_range(&filament_config);
-            }
-            else if (opt_key == "nozzle_temperature_initial_layer") {
-                m_config_manipulation.check_nozzle_temperature_initial_layer_range(&filament_config);
-            }
-            else if (opt_key == "chamber_temperature") {
-                m_config_manipulation.check_chamber_temperature(&filament_config);
-            }
-
-            on_value_change(opt_key, value);
-        };
-
-        //BBS
-        optgroup = page->new_optgroup(L("Volumetric speed limitation"), L"param_volumetric_speed");
-        optgroup->append_single_option_line("filament_adaptive_volumetric_speed", "material_volumetric_speed_limitation#adaptive-volumetric-speed", 0);
-        optgroup->append_single_option_line("filament_max_volumetric_speed", "material_volumetric_speed_limitation#max-volumetric-speed", 0);
-
-        //line = { "", "" };
-        //line.full_width = 1;
-        //line.widget = [this](wxWindow* parent) {
-        //    return description_line_widget(parent, &m_volumetric_speed_description_line);
-        //};
-        //optgroup->append_line(line);
-
-    page = add_options_page(L("Cooling"), "custom-gcode_cooling_fan"); // ORCA: icon only visible on placeholders
-
-        //line = { "", "" };
-        //line.full_width = 1;
-        //line.widget = [this](wxWindow* parent) {
-        //    return description_line_widget(parent, &m_cooling_description_line);
-        //};
-        //optgroup->append_line(line);
-        optgroup = page->new_optgroup(L("Cooling for specific layer"), L"param_cooling_specific_layer");
-        optgroup->append_single_option_line("close_fan_the_first_x_layers", "material_cooling#no-cooling-for-the-first");
-        optgroup->append_single_option_line("full_fan_speed_layer", "material_cooling#full-fan-speed-at-layer");
-
-        optgroup = page->new_optgroup(L("Part cooling fan"), L"param_cooling_part_fan");
-        line = { L("Min fan speed threshold"), L("Part cooling fan speed will start to run at min speed when the estimated layer time is no longer than the layer time in setting. When layer time is shorter than threshold, fan speed is interpolated between the minimum and maximum fan speed according to layer printing time") };
-        line.label_path = "material_cooling#material-part-cooling-fan";
-        line.append_option(optgroup->get_option("fan_min_speed"));
-        line.append_option(optgroup->get_option("fan_cooling_layer_time"));
-        optgroup->append_line(line);
-        line = { L("Max fan speed threshold"), L("Part cooling fan speed will be max when the estimated layer time is shorter than the setting value") };
-        line.label_path = "material_cooling#material-part-cooling-fan";
-        line.append_option(optgroup->get_option("fan_max_speed"));
-        line.append_option(optgroup->get_option("slow_down_layer_time"));
-        optgroup->append_line(line);
-        optgroup->append_single_option_line("reduce_fan_stop_start_freq", "material_cooling#keep-fan-always-on");
-        optgroup->append_single_option_line("slow_down_for_layer_cooling", "material_cooling#slow-printing-down-for-better-layer-cooling");
-        optgroup->append_single_option_line("dont_slow_down_outer_wall", "material_cooling#dont-slow-down-outer-walls");
-        optgroup->append_single_option_line("slow_down_min_speed", "material_cooling#min-print-speed");
-
-        optgroup->append_single_option_line("enable_overhang_bridge_fan", "material_cooling#force-cooling-for-overhangs-and-bridges");
-        optgroup->append_single_option_line("overhang_fan_threshold", "material_cooling#overhang-cooling-activation-threshold");
-        optgroup->append_single_option_line("overhang_fan_speed", "material_cooling#overhangs-and-external-bridges-fan-speed");
-        optgroup->append_single_option_line("internal_bridge_fan_speed", "material_cooling#internal-bridges-fan-speed"); // ORCA: Add support for separate internal bridge fan speed control
-        optgroup->append_single_option_line("support_material_interface_fan_speed", "material_cooling#support-interface-fan-speed");
-        optgroup->append_single_option_line("ironing_fan_speed", "material_cooling#ironing-fan-speed"); // ORCA: Add support for ironing fan speed control
-
-        optgroup = page->new_optgroup(L("Auxiliary part cooling fan"), L"param_cooling_aux_fan");
-        optgroup->append_single_option_line("additional_cooling_fan_speed", "material_cooling#auxiliary-part-cooling-fan");
-
-        optgroup = page->new_optgroup(L("Exhaust fan"),L"param_cooling_exhaust");
-
-        optgroup->append_single_option_line("activate_air_filtration", "material_cooling#activate-air-filtration");
-
-        line = {L("During print"), ""};
-        line.append_option(optgroup->get_option("during_print_exhaust_fan_speed"));
-        line.label_path = "material_cooling#during-print";
-        optgroup->append_line(line);
-
-
-        line = {L("Complete print"), ""};
-        line.append_option(optgroup->get_option("complete_print_exhaust_fan_speed"));
-        line.label_path = "material_cooling#complete-print";
-        optgroup->append_line(line);
-        //BBS
-        add_filament_overrides_page();
+        // Confabric: Removed Print chamber temperature, Print temperature, Bed temperature, Volumetric speed limitation sections
+        // Confabric: Removed Cooling page and Setting Overrides page
         const int gcode_field_height = 15; // 150
         const int notes_field_height = 25; // 250
 
         auto edit_custom_gcode_fn = [this](const t_config_option_key& opt_key) { edit_custom_gcode(opt_key); };
 
     page = add_options_page(L("Advanced"), "custom-gcode_advanced"); // ORCA: icon only visible on placeholders
-        optgroup = page->new_optgroup(L("Filament start G-code"), L"param_gcode", 0);
+        optgroup = page->new_optgroup(L("Malzeme start G-code"), L"param_gcode", 0); // Confabric: Renamed from Filament
         optgroup->m_on_change = [this, &optgroup_title = optgroup->title](const t_config_option_key& opt_key, const boost::any& value) {
             validate_custom_gcode_cb(this, optgroup_title, opt_key, value);
         };
@@ -4032,7 +3871,7 @@ void TabFilament::build()
         option.opt.height = gcode_field_height;// 150;
         optgroup->append_single_option_line(option);
 
-        optgroup = page->new_optgroup(L("Filament end G-code"), L"param_gcode", 0);
+        optgroup = page->new_optgroup(L("Malzeme end G-code"), L"param_gcode", 0); // Confabric: Renamed from Filament
         optgroup->m_on_change = [this, &optgroup_title = optgroup->title](const t_config_option_key& opt_key, const boost::any& value) {
             validate_custom_gcode_cb(this, optgroup_title, opt_key, value);
         };
@@ -4043,69 +3882,7 @@ void TabFilament::build()
         option.opt.height = gcode_field_height;// 150;
         optgroup->append_single_option_line(option);
 
-    page = add_options_page(L("Multimaterial"), "custom-gcode_multi_material"); // ORCA: icon only visible on placeholders
-        optgroup = page->new_optgroup(L("Wipe tower parameters"), "param_tower");
-        optgroup->append_single_option_line("filament_minimal_purge_on_wipe_tower", "material_multimaterial#multimaterial-wipe-tower-parameters");
-        
-        optgroup = page->new_optgroup(L("Multi Filament"));
-        // optgroup->append_single_option_line("filament_flush_temp", "", 0);
-        // optgroup->append_single_option_line("filament_flush_volumetric_speed", "", 0);
-        optgroup->append_single_option_line("long_retractions_when_ec", "material_multimaterial#multi-filament" , 0);
-        optgroup->append_single_option_line("retraction_distances_when_ec", "material_multimaterial#multi-filament" , 0);
-
-        optgroup = page->new_optgroup(L("Tool change parameters with single extruder MM printers"), "param_toolchange");
-        optgroup->append_single_option_line("filament_loading_speed_start", "material_multimaterial#loading-speed-at-the-start");
-        optgroup->append_single_option_line("filament_loading_speed", "material_multimaterial#loading-speed");
-        optgroup->append_single_option_line("filament_unloading_speed_start", "material_multimaterial#unloading-speed-at-the-start");
-        optgroup->append_single_option_line("filament_unloading_speed", "material_multimaterial#unloading-speed");
-        optgroup->append_single_option_line("filament_toolchange_delay", "material_multimaterial#delay-after-unloading");
-        optgroup->append_single_option_line("filament_cooling_moves", "material_multimaterial#number-of-cooling-moves");
-        optgroup->append_single_option_line("filament_cooling_initial_speed", "material_multimaterial#speed-of-the-first-cooling-move");
-        optgroup->append_single_option_line("filament_cooling_final_speed", "material_multimaterial#speed-of-the-last-cooling-move");
-        optgroup->append_single_option_line("filament_stamping_loading_speed", "material_multimaterial#stamping-loading-speed");
-        optgroup->append_single_option_line("filament_stamping_distance", "material_multimaterial#stamping-distance");
-        create_line_with_widget(optgroup.get(), "filament_ramming_parameters", "material_multimaterial#ramming-parameters", [this](wxWindow* parent) {
-
-            // ORCA modernize button style
-            Button* btn = new Button(parent, _(L("Set")) + " " + dots);
-            btn->SetStyle(ButtonStyle::Regular, ButtonType::Parameter);
-
-            auto sizer = new wxBoxSizer(wxHORIZONTAL);
-            sizer->Add(btn);
-
-            btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& e) {
-                RammingDialog dlg(this,(m_config->option<ConfigOptionStrings>("filament_ramming_parameters"))->get_at(0));
-                if (dlg.ShowModal() == wxID_OK) {
-                    load_key_value("filament_ramming_parameters", dlg.get_parameters());
-                    update_changed_ui();
-                }
-            });
-            return sizer;
-        });
-
-        optgroup = page->new_optgroup(L("Tool change parameters with multi extruder MM printers"), "param_toolchange_multi_extruder");
-        optgroup->append_single_option_line("filament_multitool_ramming", "material_multimaterial#tool-change-parameters-with-multi-extruder");
-        optgroup->append_single_option_line("filament_multitool_ramming_volume", "material_multimaterial#multi-tool-ramming-volume");
-        optgroup->append_single_option_line("filament_multitool_ramming_flow", "material_multimaterial#multi-tool-ramming-flow");
-
-    page = add_options_page(L("Dependencies"), "advanced");
-        optgroup = page->new_optgroup(L("Compatible printers"), "param_dependencies_printers");
-        create_line_with_widget(optgroup.get(), "compatible_printers", "", [this](wxWindow* parent) {
-            return compatible_widget_create(parent, m_compatible_printers);
-        });
-
-        option = optgroup->get_option("compatible_printers_condition");
-        option.opt.full_width = true;
-        optgroup->append_single_option_line(option, "material_dependencies#compatible-printers");
-
-        optgroup = page->new_optgroup(L("Compatible process profiles"), "param_dependencies_presets");
-        create_line_with_widget(optgroup.get(), "compatible_prints", "", [this](wxWindow* parent) {
-            return compatible_widget_create(parent, m_compatible_prints);
-        });
-
-        option = optgroup->get_option("compatible_prints_condition");
-        option.opt.full_width = true;
-        optgroup->append_single_option_line(option, "material_dependencies#compatible-process-profiles");
+    // Confabric: Removed Multimaterial and Dependencies pages
 
     page = add_options_page(L("Notes"), "custom-gcode_note"); // ORCA: icon only visible on placeholders
         optgroup = page->new_optgroup(L("Notes"),"note", 0);
