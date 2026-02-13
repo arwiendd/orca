@@ -6615,14 +6615,7 @@ bool GLCanvas3D::_init_main_toolbar()
     if (!m_main_toolbar.add_item(item))
         return false;
 
-    item.name = "addplate";
-    item.icon_filename = m_is_dark ? "toolbar_add_plate_dark.svg" : "toolbar_add_plate.svg";
-    item.tooltip = _utf8(L("Add plate"));
-    item.sprite_id++;
-    item.left.action_callback = [this]() { if (m_canvas != nullptr) wxPostEvent(m_canvas, SimpleEvent(EVT_GLTOOLBAR_ADD_PLATE)); };
-    item.enabling_callback = []()->bool {return wxGetApp().plater()->can_add_plate(); };
-    if (!m_main_toolbar.add_item(item))
-        return false;
+    // Confabric: Removed Add plate button for concrete printing
 
     item.name = "orient";
     item.icon_filename = m_is_dark ? "toolbar_orient_dark.svg" : "toolbar_orient.svg";
@@ -6646,7 +6639,23 @@ bool GLCanvas3D::_init_main_toolbar()
     if (!m_main_toolbar.add_item(item))
         return false;
 
-    // Confabric: Removed Arrange button for concrete printing
+    item.name = "arrange";
+    item.icon_filename = m_is_dark ? "toolbar_arrange_dark.svg" : "toolbar_arrange.svg";
+    item.tooltip = _utf8(L("Arrange all objects")) + " [A]\n" + _utf8(L("Arrange objects on selected plates")) + " [" + _utf8(L("Shift+")) + "A]";
+    item.sprite_id++;
+    item.left.action_callback = []() {};
+    item.enabling_callback = []()->bool { return wxGetApp().plater()->can_arrange(); };
+    item.left.toggable = true;
+    //BBS: GUI refactor: adjust the main toolbar position
+    item.left.render_callback = [this](float left, float right, float bottom, float top) {
+        if (m_canvas != nullptr)
+        {
+            _render_arrange_menu(left, right, bottom, top);
+            //_render_arrange_menu(0.5f * (left + right));
+        }
+    };
+    if (!m_main_toolbar.add_item(item))
+        return false;
 
     item.right.toggable = false;
     item.right.render_callback = GLToolbarItem::Default_Render_Callback;
