@@ -6646,23 +6646,7 @@ bool GLCanvas3D::_init_main_toolbar()
     if (!m_main_toolbar.add_item(item))
         return false;
 
-    item.name = "arrange";
-    item.icon_filename = m_is_dark ? "toolbar_arrange_dark.svg" : "toolbar_arrange.svg";
-    item.tooltip = _utf8(L("Arrange all objects")) + " [A]\n" + _utf8(L("Arrange objects on selected plates")) + " [" + _utf8(L("Shift+")) + "A]";
-    item.sprite_id++;
-    item.left.action_callback = []() {};
-    item.enabling_callback = []()->bool { return wxGetApp().plater()->can_arrange(); };
-    item.left.toggable = true;
-    //BBS: GUI refactor: adjust the main toolbar position
-    item.left.render_callback = [this](float left, float right, float bottom, float top) {
-        if (m_canvas != nullptr)
-        {
-            _render_arrange_menu(left, right, bottom, top);
-            //_render_arrange_menu(0.5f * (left + right));
-        }
-    };
-    if (!m_main_toolbar.add_item(item))
-        return false;
+    // Confabric: Removed Arrange button for concrete printing
 
     item.right.toggable = false;
     item.right.render_callback = GLToolbarItem::Default_Render_Callback;

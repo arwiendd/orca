@@ -1119,92 +1119,14 @@ void PartPlate::render_icons(bool bottom, bool only_name, int hover_id)
         glsafe(::glEnable(GL_BLEND));
         glsafe(::glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
+        // Confabric: Removed plate icons panel (delete, orient, arrange, lock, settings, move front, name edit) for concrete printing
         if (!only_name) {
-            if (hover_id == 1) {
-                render_icon_texture(m_del_icon.model, m_partplate_list->m_del_hovered_texture);
-                show_tooltip(_u8L("Remove current plate (if not last one)"));
-            }
-            else
-                render_icon_texture(m_del_icon.model, m_partplate_list->m_del_texture);
-
-            if (hover_id == 2) {
-                render_icon_texture(m_orient_icon.model, m_partplate_list->m_orient_hovered_texture);
-                show_tooltip(_u8L("Auto orient objects on current plate"));
-            }
-            else
-                render_icon_texture(m_orient_icon.model, m_partplate_list->m_orient_texture);
-
-            if (hover_id == 3) {
-                render_icon_texture(m_arrange_icon.model, m_partplate_list->m_arrange_hovered_texture);
-                show_tooltip(_u8L("Arrange objects on current plate"));
-            }
-            else
-                render_icon_texture(m_arrange_icon.model, m_partplate_list->m_arrange_texture);
-
-            if (hover_id == 4) {
-                if (this->is_locked()) {
-                    render_icon_texture(m_lock_icon.model,
-                                        m_partplate_list->m_locked_hovered_texture);
-                    show_tooltip(_u8L("Unlock current plate"));
-                }
-                else {
-                    render_icon_texture(m_lock_icon.model,
-                                        m_partplate_list->m_lockopen_hovered_texture);
-                    show_tooltip(_u8L("Lock current plate"));
-                }
-            } else {
-                if (this->is_locked())
-                    render_icon_texture(m_lock_icon.model, m_partplate_list->m_locked_texture);
-                else
-                    render_icon_texture(m_lock_icon.model, m_partplate_list->m_lockopen_texture);
-            }
-
-            PresetBundle* preset = wxGetApp().preset_bundle;
-            bool dual_bbl = (preset->is_bbl_vendor() && preset->get_printer_extruder_count() == 2);
-            if (dual_bbl) {
-                if (hover_id == PLATE_FILAMENT_MAP_ID){
-                    render_icon_texture(m_plate_filament_map_icon.model, m_partplate_list->m_plate_set_filament_map_hovered_texture);
-                    show_tooltip(_u8L("Filament grouping"));
-                } else
-                    render_icon_texture(m_plate_filament_map_icon.model, m_partplate_list->m_plate_set_filament_map_texture);
-            }
-
-			if (hover_id == 6) {
-                render_icon_texture(m_plate_name_edit_icon.model, m_partplate_list->m_plate_name_edit_hovered_texture);
-                show_tooltip(_u8L("Edit current plate name"));
-			}
-			else
-                render_icon_texture(m_plate_name_edit_icon.model, m_partplate_list->m_plate_name_edit_texture);
-
-			if (hover_id == 7) {
-                render_icon_texture(m_move_front_icon.model, m_partplate_list->m_move_front_hovered_texture);
-                show_tooltip(_u8L("Move plate to the front"));
-            } else
-                render_icon_texture(m_move_front_icon.model, m_partplate_list->m_move_front_texture);
-
-
-			if (m_partplate_list->render_plate_settings) {
-				bool has_plate_settings = get_bed_type() != BedType::btDefault || get_print_seq() != PrintSequence::ByDefault || !get_first_layer_print_sequence().empty() || !get_other_layers_print_sequence().empty() || has_spiral_mode_config();
-                if (hover_id == 5) {
-                    if (!has_plate_settings)
-                        render_icon_texture(m_plate_settings_icon.model, m_partplate_list->m_plate_settings_hovered_texture);
-                    else
-                        render_icon_texture(m_plate_settings_icon.model, m_partplate_list->m_plate_settings_changed_hovered_texture);
-
-                    show_tooltip(_u8L("Customize current plate"));
-                } else {
-                    if (!has_plate_settings)
-                        render_icon_texture(m_plate_settings_icon.model, m_partplate_list->m_plate_settings_texture);
-                    else
-                        render_icon_texture(m_plate_settings_icon.model, m_partplate_list->m_plate_settings_changed_texture);
-                }
-            }
-
+            // Only render plate index number
             if (m_plate_index >= 0 && m_plate_index < MAX_PLATE_COUNT) {
                 render_icon_texture(m_plate_idx_icon, m_partplate_list->m_idx_textures[m_plate_index]);
             }
         }
-		render_plate_name_texture();
+        // Confabric: Removed plate name texture ("Untitled") for concrete printing
 
         glsafe(::glDisable(GL_BLEND));
 
