@@ -1,0 +1,8 @@
+[info]	2026-02-14 17:23:10.818673[Thread 0x00005680]:gui mode, Current Confabric Slicer Version 2.3.2-dev build 138193d1c1
+[warning]	2026-02-14 17:23:10.944911[Thread 0x00005680]:Failed to load to hints.cereal. File does not exists. C:\Users\ardas\AppData\Roaming\ConfabricSlicer\user\hints.cereal
+[warning]	2026-02-14 17:23:14.503120[Thread 0x00005680]:Slic3r::NetworkAgent::get_version, get_version not supported,return 00.00.00.00!
+[error]	2026-02-14 17:23:17.792088[Thread 0x00005680]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[warning]	2026-02-14 17:23:22.387643[Thread 0x00005680]:Slic3r::NetworkAgent::get_version, get_version not supported,return 00.00.00.00!
+[error]	2026-02-14 17:23:35.155681[Thread 0x00005680]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 17:23:40.556689[Thread 0x00005680]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 17:24:17.509044[Thread 0x00005680]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles

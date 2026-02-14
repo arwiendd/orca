@@ -1,0 +1,27 @@
+[info]	2026-02-14 22:51:24.360444[Thread 0x00006b08]:gui mode, Current Confabric Slicer Version 2.3.2-dev build 138193d1c1
+[warning]	2026-02-14 22:51:26.064225[Thread 0x00006b08]:Slic3r::NetworkAgent::get_version, get_version not supported,return 00.00.00.00!
+[error]	2026-02-14 22:51:27.664313[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:51:29.596266[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[warning]	2026-02-14 22:51:29.716713[Thread 0x00006b08]:Slic3r::NetworkAgent::get_version, get_version not supported,return 00.00.00.00!
+[error]	2026-02-14 22:52:05.475370[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:34.230758[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:39.472167[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:41.840754[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:43.420798[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:45.521604[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:47.021209[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:48.681176[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:49.921219[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:51.661395[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:53.221512[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:52:54.980936[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:55:53.074217[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:56:43.426863[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:57:00.213713[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:57:37.807685[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:57:46.575378[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:59:04.415652[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:59:12.278496[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:59:24.707218[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 22:59:45.932933[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 23:00:58.328893[Thread 0x00006b08]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles

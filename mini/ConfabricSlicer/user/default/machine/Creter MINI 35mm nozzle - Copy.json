@@ -1,0 +1,24 @@
+{
+    "best_object_pos": "0,0",
+    "from": "User",
+    "inherits": "Creter MINI 35mm nozzle",
+    "max_layer_height": [
+        "25"
+    ],
+    "name": "Creter MINI 35mm nozzle - Copy",
+    "printable_area": [
+        "0x0",
+        "1900x0",
+        "1900x1600",
+        "0x1600"
+    ],
+    "printable_height": "1500",
+    "printer_extruder_id": [
+        "1"
+    ],
+    "printer_extruder_variant": [
+        "Direct Drive Standard"
+    ],
+    "printer_settings_id": "Creter MINI 35mm nozzle - Copy",
+    "version": "1.0.0.0"
+}
