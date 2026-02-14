@@ -148,7 +148,7 @@ wxString CopyrightsDialog::get_html_text()
         _L("License"),
         _L("Confabric Slicer is licensed under "),
         "https://www.gnu.org/licenses/agpl-3.0.html",_L("GNU Affero General Public License, version 3"),
-        _L("Confabric Slicer is based on PrusaSlicer and BambuStudio"),
+        _L("Confabric Slicer is proprietary software developed by Confabric Technologies, built upon the open-source foundation of Slic3r"),
         _L("Libraries"),
         _L("This software uses open source components whose copyright and other proprietary rights belong to their respective owners"));
 
@@ -270,10 +270,8 @@ AboutDialog::AboutDialog()
     text_sizer_horiz->Add( 0, 0, 0, wxLEFT, FromDIP(20));
 
     std::vector<wxString> text_list;
-    text_list.push_back(_L("Confabric Slicer is based on BambuStudio, PrusaSlicer, and SuperSlicer."));
-    text_list.push_back(_L("BambuStudio is originally based on PrusaSlicer by PrusaResearch."));
-    text_list.push_back(_L("PrusaSlicer is originally based on Slic3r by Alessandro Ranellucci."));
-    text_list.push_back(_L("Slic3r was created by Alessandro Ranellucci with the help of many other contributors."));
+    text_list.push_back(_L("Confabric Slicer is proprietary software developed by Confabric Technologies for advanced concrete additive manufacturing systems."));
+    text_list.push_back(_L("Built upon the open-source foundation of Slic3r, it integrates machine-specific optimizations, motion control enhancements, and material-adaptive algorithms tailored for Confabric hardware."));
 
     text_sizer->Add( 0, 0, 0, wxTOP, FromDIP(33));
     bool is_zh = wxGetApp().app_config->get("language") == "zh_CN";
@@ -315,7 +313,7 @@ AboutDialog::AboutDialog()
 
     copyright_hor_sizer->Add(copyright_ver_sizer, 0, wxLEFT, FromDIP(20));
 
-    wxStaticText *html_text = new wxStaticText(this, wxID_ANY, "Copyright(C) 2022-2025 Li Jiang All Rights Reserved", wxDefaultPosition, wxDefaultSize);
+    wxStaticText *html_text = new wxStaticText(this, wxID_ANY, wxString::FromUTF8("\xC2\xA9 2022\xe2\x80\x932026 Confabric Technologies."), wxDefaultPosition, wxDefaultSize);
     html_text->SetForegroundColour(wxColour(107, 107, 107));
 
     copyright_ver_sizer->Add(html_text, 0, wxALL , 0);
@@ -332,7 +330,7 @@ AboutDialog::AboutDialog()
               (boost::format(
               "<html>"
               "<body>"
-              "<p style=\"text-align:left\"><a style=\"color:#009789\" href=\"https://github.com/arwiendd/orca\">https://github.com/arwiendd/orca</ a></p>"
+              "<p style=\"text-align:left\"><a style=\"color:#f6cc1d\" href=\"https://github.com/arwiendd/orca\">https://github.com/arwiendd/orca</ a></p>"
               "</body>"
               "</html>")
             ).str());
