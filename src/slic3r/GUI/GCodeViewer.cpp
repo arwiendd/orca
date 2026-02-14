@@ -455,15 +455,6 @@ void GCodeViewer::SequentialView::Marker::render_position_window(const libvgcode
                         text = NA_TXT;
                     ImGuiWrapper::text(text);
                   });
-                append_table_row(_u8L("Fan speed") + " (" + _u8L("%") + ")", [&vertex, &buff]() {
-                    sprintf(buff, "%.0f", vertex.fan_speed);
-                    const std::string text = std::string(buff);
-                    ImGuiWrapper::text(text);
-                });
-                append_table_row(_u8L("Temperature") + " (" + _u8L("°C") + ")", [&vertex, &buff]() {
-                    sprintf(buff, "%.0f", vertex.temperature);
-                    ImGuiWrapper::text(std::string(buff));
-                });
                 append_table_row(_u8L("Time"), [viewer, &vertex, &buff, vertex_id]() {
                     const float estimated_time = viewer->get_estimated_time_at(vertex_id);
                     sprintf(buff, "%s (%.3fs)", get_time_dhms(estimated_time).c_str(), vertex.times[static_cast<size_t>(viewer->get_time_mode())]);
@@ -906,7 +897,6 @@ void GCodeViewer::update_by_mode(ConfigOptionMode mode)
     // BBS initialzed view_type items
     view_type_items.push_back(libvgcode::EViewType::Summary);
     view_type_items.push_back(libvgcode::EViewType::FeatureType);
-    view_type_items.push_back(libvgcode::EViewType::ColorPrint);
     view_type_items.push_back(libvgcode::EViewType::Speed);
     view_type_items.push_back(libvgcode::EViewType::ActualSpeed);
     view_type_items.push_back(libvgcode::EViewType::Height);
@@ -915,8 +905,6 @@ void GCodeViewer::update_by_mode(ConfigOptionMode mode)
     view_type_items.push_back(libvgcode::EViewType::ActualVolumetricFlowRate);
     view_type_items.push_back(libvgcode::EViewType::LayerTimeLinear);
     view_type_items.push_back(libvgcode::EViewType::LayerTimeLogarithmic);
-    view_type_items.push_back(libvgcode::EViewType::FanSpeed);
-    view_type_items.push_back(libvgcode::EViewType::Temperature);
     //if (mode == ConfigOptionMode::comDevelop) {
     //    view_type_items.push_back(EViewType::Tool);
     //}
