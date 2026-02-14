@@ -1,0 +1,20 @@
+[info]	2026-02-14 11:14:26.541912[Thread 0x000069cc]:gui mode, Current Confabric Slicer Version 2.3.2-dev build 138193d1c1
+[warning]	2026-02-14 11:14:26.598091[Thread 0x000069cc]:Failed to load to hints.cereal. File does not exists. C:\Users\ardas\AppData\Roaming\ConfabricSlicer\user\hints.cereal
+[warning]	2026-02-14 11:14:27.907657[Thread 0x000069cc]:Slic3r::NetworkAgent::get_version, get_version not supported,return 00.00.00.00!
+[error]	2026-02-14 11:14:29.213910[Thread 0x000069cc]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[warning]	2026-02-14 11:14:29.231688[Thread 0x000069cc]:11:14:29: Error: can't open file 'C:\Users\ardas\orca\build\OrcaSlicer\resources\images\printer_preview_.png' (error 2: Sistem belirtilen dosyayı bulamıyor.)
+[warning]	2026-02-14 11:14:29.231688[Thread 0x000069cc]:11:14:29: Error: Failed to load image from file "C:\Users\ardas\orca\build\OrcaSlicer\resources\images\printer_preview_.png".
+[error]	2026-02-14 11:14:29.231688[Thread 0x000069cc]:create_scaled_bitmapCould not load bitmap: printer_preview_
+[error]	2026-02-14 11:14:30.780251[Thread 0x000069cc]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[error]	2026-02-14 11:14:41.323661[Thread 0x000069cc]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[warning]	2026-02-14 11:14:41.369908[Thread 0x000069cc]:Slic3r::NetworkAgent::get_version, get_version not supported,return 00.00.00.00!
+[error]	2026-02-14 11:14:49.621476[Thread 0x000069cc]:Slic3r::GUI::PartPlate::calc_exclude_triangles:Unable to create exclude triangles
+[warning]	2026-02-14 11:15:08.628750[Thread 0x000069cc]:Slic3r::ConfigBase::option: attempt to access option with wrong type: flush_multiplier
+[warning]	2026-02-14 11:18:20.466866[Thread 0x000069cc]:Slic3r::ConfigBase::option: attempt to access option with wrong type: flush_multiplier
+[error]	2026-02-14 11:28:09.044264[Thread 0x000069cc]:Slic3r::GUI::Tab::tree_sel_change_delayedcan not find page with current selection 
+[error]	2026-02-14 11:28:09.980933[Thread 0x000069cc]:Slic3r::GUI::Tab::tree_sel_change_delayedcan not find page with current selection 
+[error]	2026-02-14 11:28:10.060624[Thread 0x000069cc]:Slic3r::GUI::Tab::tree_sel_change_delayedcan not find page with current selection 
+[error]	2026-02-14 11:28:13.096765[Thread 0x000069cc]:Slic3r::GUI::Tab::tree_sel_change_delayedcan not find page with current selection 
+[error]	2026-02-14 11:28:13.376866[Thread 0x000069cc]:Slic3r::GUI::Tab::tree_sel_change_delayedcan not find page with current selection 
+[error]	2026-02-14 11:28:13.903039[Thread 0x000069cc]:Slic3r::GUI::Tab::tree_sel_change_delayedcan not find page with current selection 
+[error]	2026-02-14 12:36:25.049176[Thread 0x000069cc]:Slic3r::GUI::Tab::tree_sel_change_delayedcan not find page with current selection 

@@ -1,0 +1,33 @@
+{
+    "best_object_pos": "0,0",
+    "from": "User",
+    "inherits": "Creter MINI PRO 30mm nozzle",
+    "max_layer_height": [
+        "20"
+    ],
+    "name": "Creter MINI PRO 30mm nozzle - Copy",
+    "printable_area": [
+        "0x0",
+        "2400x0",
+        "2400x2000",
+        "0x2000"
+    ],
+    "printable_height": "1900",
+    "printer_extruder_id": [
+        "1"
+    ],
+    "printer_extruder_variant": [
+        "Direct Drive Standard"
+    ],
+    "printer_settings_id": "Creter MINI PRO 30mm nozzle - Copy",
+    "travel_slope": [
+        "35"
+    ],
+    "version": "1.0.0.0",
+    "z_hop": [
+        "0"
+    ],
+    "z_hop_types": [
+        "Slope Lift"
+    ]
+}

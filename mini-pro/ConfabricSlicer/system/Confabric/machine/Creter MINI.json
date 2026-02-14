@@ -1,0 +1,14 @@
+{
+    "type": "machine_model",
+    "name": "Creter MINI",
+    "model_id": "Creter_MINI",
+    "nozzle_diameter": "30mm;35mm;40mm;45mm;50mm",
+    "machine_tech": "FFF",
+    "family": "Creter",
+    "bed_model": "",
+    "bed_texture": "",
+    "hotend_model": "",
+    "default_materials": "Concem K1",
+    "printable_area": ["0x0", "2000x0", "2000x1500", "0x1500"],
+    "printable_height": "1000"
+}
