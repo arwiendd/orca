@@ -27,6 +27,7 @@
     "precise_outer_wall": "0",
     "print_settings_id": "process 40mm @Creter",
     "seam_gap": "0",
+    "skirt_speed": "75",
     "small_perimeter_speed": "75",
     "sparse_infill_density": "0%",
     "sparse_infill_line_width": "40",

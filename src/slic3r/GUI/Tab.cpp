@@ -2351,6 +2351,9 @@ void TabPrint::build()
         // Line Width - controls all line width parameters
         optgroup = page->new_optgroup(L("Line width"), L"param_line_width");
         optgroup->append_single_option_line("line_width", "quality_settings_line_width");
+        optgroup->append_single_option_line("outer_wall_line_width", "quality_settings_line_width");
+        optgroup->append_single_option_line("inner_wall_line_width", "quality_settings_line_width");
+        optgroup->append_single_option_line("initial_layer_line_width", "quality_settings_line_width");
 
         // Seam
         optgroup = page->new_optgroup(L("Seam"), L"param_seam");
@@ -2376,6 +2379,11 @@ void TabPrint::build()
         optgroup = page->new_optgroup(L("Speed"), L"param_speed");
         optgroup->append_single_option_line("outer_wall_speed", "speed_settings_other_layers_speed#outer-wall");
         optgroup->append_single_option_line("initial_layer_travel_speed", "speed_settings_initial_layer_speed#initial-layer-travel-speed");
+
+        // Skirt
+        optgroup = page->new_optgroup(L("Skirt"), L"param_skirt");
+        optgroup->append_single_option_line("skirt_loops", "others_settings_skirt#loops");
+        optgroup->append_single_option_line("skirt_distance", "others_settings_skirt#distance");
 
         // Special Mode
         optgroup = page->new_optgroup(L("Special mode"), L"param_special");
