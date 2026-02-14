@@ -330,7 +330,7 @@ AboutDialog::AboutDialog()
               (boost::format(
               "<html>"
               "<body>"
-              "<p style=\"text-align:left\"><a style=\"color:#f6cc1d\" href=\"https://github.com/arwiendd/orca\">https://github.com/arwiendd/orca</ a></p>"
+              "<p style=\"text-align:left\"><a style=\"color:#f6cc1d\" href=\"https://confabric.com\">https://confabric.com</ a></p>"
               "</body>"
               "</html>")
             ).str());
@@ -338,20 +338,8 @@ AboutDialog::AboutDialog()
           copyright_ver_sizer->Add(m_html, 0, wxEXPAND, 0);
           m_html->Bind(wxEVT_HTML_LINK_CLICKED, &AboutDialog::onLinkClicked, this);
       }
-    //Add "Portions copyright" button
-    Button* button_portions = new Button(this,_L("Portions copyright"));
-    button_portions->SetStyle(ButtonStyle::Regular, ButtonType::Window);
-
-    wxBoxSizer *copyright_button_ver = new wxBoxSizer(wxVERTICAL);
-    copyright_button_ver->Add( 0, 0, 0, wxTOP, FromDIP(10));
-    copyright_button_ver->Add(button_portions, 0, wxALL,0);
-
-    copyright_hor_sizer->AddStretchSpacer();
-    copyright_hor_sizer->Add(copyright_button_ver, 0, wxRIGHT, FromDIP(20));
-
     ver_sizer->Add(copyright_hor_sizer, 0, wxEXPAND ,0);
     ver_sizer->Add( 0, 0, 0, wxTOP, FromDIP(30));
-    button_portions->Bind(wxEVT_BUTTON, &AboutDialog::onCopyrightBtn, this);
 
     wxGetApp().UpdateDlgDarkUI(this);
 	SetSizer(main_sizer);
