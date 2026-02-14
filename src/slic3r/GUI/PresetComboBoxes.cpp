@@ -834,7 +834,8 @@ PlaterPresetComboBox::PlaterPresetComboBox(wxWindow *parent, Preset::Type preset
         int em = wxGetApp().em_unit();
         clr_picker = new wxBitmapButton(parent, wxID_ANY, {}, wxDefaultPosition, wxSize(FromDIP(20), FromDIP(20)), wxBU_EXACTFIT | wxBU_AUTODRAW | wxBORDER_NONE);
         clr_picker->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
-        clr_picker->SetToolTip(_L("Click to select filament color"));
+        // Confabric: Hide color picker - use Confabric gold as default
+        clr_picker->Hide();
         clr_picker->Bind(wxEVT_BUTTON, [this](wxCommandEvent& e) {
             // Check if it's an official filament
             auto fila_type = Preset::remove_suffix_modified(GetValue().ToUTF8().data());

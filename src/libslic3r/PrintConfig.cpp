@@ -2269,14 +2269,14 @@ void PrintConfigDef::init_fff_params()
                       "Right click to reset value to system default.");
     def->gui_type = ConfigOptionDef::GUIType::color;
     def->mode     = comAdvanced;
-    def->set_default_value(new ConfigOptionStrings{""});
+    def->set_default_value(new ConfigOptionStrings{"#F6CC1D"}); // Confabric gold
 
     def = this->add("filament_colour", coStrings);
     def->label = L("Color");
     def->tooltip = L("Only used as a visual help on UI.");
     def->gui_type = ConfigOptionDef::GUIType::color;
     def->mode = comAdvanced;
-    def->set_default_value(new ConfigOptionStrings{ "#F2754E" });
+    def->set_default_value(new ConfigOptionStrings{ "#F6CC1D" }); // Confabric gold
 
     // PS
     def = this->add("filament_notes", coStrings);

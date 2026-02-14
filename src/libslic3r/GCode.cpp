@@ -1947,15 +1947,8 @@ void GCode::do_export(Print* print, const char* path, GCodeProcessorResult* resu
     m_processor.result().long_retraction_when_cut = activate_long_retraction_when_cut;
    
     {   //BBS:check bed and filament compatible
-        const ConfigOptionInts *bed_temp_opt = m_config.option<ConfigOptionInts>(get_bed_temp_1st_layer_key(m_config.curr_bed_type));
-        std::vector<int> conflict_filament;
-        for(auto extruder_id : m_initial_layer_extruders){
-            int cur_bed_temp = bed_temp_opt->get_at(extruder_id);
-            if (cur_bed_temp == 0) {
-                conflict_filament.push_back(extruder_id);
-            }
-        }
-
+        // Confabric: Disable bed/filament compatibility check - always allow printing
+        std::vector<int> conflict_filament; // Empty - no conflicts
         m_processor.result().filament_printable_reuslt = FilamentPrintableResult(conflict_filament, bed_type_to_gcode_string(m_config.curr_bed_type));
     }
     // check gcode is valid in machine printabele area and multi_extruder printabele area
