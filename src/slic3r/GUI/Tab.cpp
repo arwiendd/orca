@@ -2638,9 +2638,11 @@ void TabPrint::build()
     // Confabric: Fuzzy Skin section removed for concrete printing
 
         optgroup = page->new_optgroup(L("G-code output"), L"param_gcode");
-        optgroup->append_single_option_line("reduce_infill_retraction", "others_settings_g_code_output#reduce-infill-retraction");
+        // Hidden for Confabric Slicer
+        // optgroup->append_single_option_line("reduce_infill_retraction", "others_settings_g_code_output#reduce-infill-retraction");
         optgroup->append_single_option_line("gcode_add_line_number", "others_settings_g_code_output#add-line-number");
-        optgroup->append_single_option_line("gcode_comments", "others_settings_g_code_output#verbose-g-code");
+        // Hidden for Confabric Slicer
+        // optgroup->append_single_option_line("gcode_comments", "others_settings_g_code_output#verbose-g-code");
         optgroup->append_single_option_line("gcode_label_objects", "others_settings_g_code_output#label-objects");
         optgroup->append_single_option_line("exclude_object", "others_settings_g_code_output#exclude-objects");
         option = optgroup->get_option("filename_format");
