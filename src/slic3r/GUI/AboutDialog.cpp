@@ -313,7 +313,7 @@ AboutDialog::AboutDialog()
 
     copyright_hor_sizer->Add(copyright_ver_sizer, 0, wxLEFT, FromDIP(20));
 
-    wxStaticText *html_text = new wxStaticText(this, wxID_ANY, wxString::FromUTF8("\xC2\xA9 2022\xe2\x80\x932026 Confabric Technologies."), wxDefaultPosition, wxDefaultSize);
+    wxStaticText *html_text = new wxStaticText(this, wxID_ANY, wxString::FromUTF8("\xC2\xA9 2022\xe2\x80\x93" "2026 Confabric Technologies."), wxDefaultPosition, wxDefaultSize);
     html_text->SetForegroundColour(wxColour(107, 107, 107));
 
     copyright_ver_sizer->Add(html_text, 0, wxALL , 0);
