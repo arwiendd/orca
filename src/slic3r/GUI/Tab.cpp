@@ -2433,6 +2433,9 @@ void TabPrint::build()
         // Hidden for Confabric Slicer
         // optgroup->append_single_option_line("support_speed", "speed_settings_other_layers_speed#support");
         // optgroup->append_single_option_line("support_interface_speed", "speed_settings_other_layers_speed#support-interface");
+
+        // Hidden for Confabric Slicer - Overhang speed section
+        /*
         optgroup = page->new_optgroup(L("Overhang speed"), L"param_overhang_speed", 15);
         optgroup->append_single_option_line("enable_overhang_speed", "speed_settings_overhang_speed#slow-down-for-overhang");
 
@@ -2449,10 +2452,16 @@ void TabPrint::build()
         line.append_option(optgroup->get_option("bridge_speed"));
         line.append_option(optgroup->get_option("internal_bridge_speed"));
         optgroup->append_line(line);
+        */
 
+        // Hidden for Confabric Slicer - Travel speed section
+        /*
         optgroup = page->new_optgroup(L("Travel speed"), L"param_travel_speed", 15);
         optgroup->append_single_option_line("travel_speed", "speed_settings_travel");
+        */
 
+        // Hidden for Confabric Slicer - Acceleration section
+        /*
         optgroup = page->new_optgroup(L("Acceleration"), L"param_acceleration", 15);
         optgroup->append_single_option_line("default_acceleration", "speed_settings_acceleration#normal-printing");
         optgroup->append_single_option_line("outer_wall_acceleration", "speed_settings_acceleration#outer-wall");
@@ -2465,7 +2474,10 @@ void TabPrint::build()
         optgroup->append_single_option_line("travel_acceleration", "speed_settings_acceleration#travel");
         optgroup->append_single_option_line("accel_to_decel_enable", "speed_settings_acceleration");
         optgroup->append_single_option_line("accel_to_decel_factor", "speed_settings_acceleration");
+        */
 
+        // Hidden for Confabric Slicer - Jerk(XY) section
+        /*
         optgroup = page->new_optgroup(L("Jerk(XY)"), L"param_jerk", 15);
         optgroup->append_single_option_line("default_junction_deviation", "speed_settings_jerk_xy#junction-deviation");
         optgroup->append_single_option_line("default_jerk", "speed_settings_jerk_xy#default");
@@ -2475,11 +2487,15 @@ void TabPrint::build()
         optgroup->append_single_option_line("top_surface_jerk", "speed_settings_jerk_xy#top-surface");
         optgroup->append_single_option_line("initial_layer_jerk", "speed_settings_jerk_xy#initial-layer");
         optgroup->append_single_option_line("travel_jerk", "speed_settings_jerk_xy#travel");
+        */
 
+        // Hidden for Confabric Slicer - Advanced section
+        /*
         optgroup = page->new_optgroup(L("Advanced"), L"param_advanced", 15);
         optgroup->append_single_option_line("max_volumetric_extrusion_rate_slope", "speed_settings_advanced");
         optgroup->append_single_option_line("max_volumetric_extrusion_rate_slope_segment_length", "speed_settings_advanced");
         optgroup->append_single_option_line("extrusion_rate_smoothing_external_perimeter_only", "speed_settings_advanced");
+        */
 
     // Confabric: Support removed - not applicable for concrete printers
     #if 0 // CONFABRIC_DISABLE_SUPPORT
