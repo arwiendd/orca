@@ -9,7 +9,7 @@
 /*----GLOBAL COLORS ----*/
 :root { 
 	--main-color         : #f6cc1d;
-	--main-color-hover   : #26A69A;
+	--main-color-hover   : #d4a800;
 	--button-fg-light    : #FEFEFE;
 	--button-fg-text     : #262E30;
 	--button-fg-disabled : #6B6B6B;
@@ -19,10 +19,10 @@
 	--button-bg-alert    : #E14747;
 }
   
-@media (prefers-color-scheme: dark) { 
+@media (prefers-color-scheme: dark) {
 :root {
-	--main-color         : #00675B;
-	--main-color-hover   : #008172;
+	--main-color         : #f6cc1d;
+	--main-color-hover   : #d4a800;
 	--button-fg-light    : #FEFEFE;
 	--button-fg-text     : #EFEFF0;
 	--button-fg-disabled : #818183;
