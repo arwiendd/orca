@@ -10,6 +10,6 @@
     "nozzle_diameter": ["35mm"],
     "printable_area": ["0x0", "2200x0", "2200x1600", "0x1600"],
     "printable_height": "1500",
-    "default_print_profile": "process template @Creter",
+    "default_print_profile": "process 35mm @Creter",
     "default_filament_profile": ["Concem K1"]
 }

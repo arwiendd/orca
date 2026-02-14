@@ -21,6 +21,26 @@
         {
             "name": "process template @Creter",
             "sub_path": "process/process template @Creter.json"
+        },
+        {
+            "name": "process 30mm @Creter",
+            "sub_path": "process/process 30mm @Creter.json"
+        },
+        {
+            "name": "process 35mm @Creter",
+            "sub_path": "process/process 35mm @Creter.json"
+        },
+        {
+            "name": "process 40mm @Creter",
+            "sub_path": "process/process 40mm @Creter.json"
+        },
+        {
+            "name": "process 45mm @Creter",
+            "sub_path": "process/process 45mm @Creter.json"
+        },
+        {
+            "name": "process 50mm @Creter",
+            "sub_path": "process/process 50mm @Creter.json"
         }
     ],
     "filament_list": [
