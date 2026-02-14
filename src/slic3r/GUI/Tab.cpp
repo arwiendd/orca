@@ -1941,6 +1941,57 @@ void Tab::on_value_change(const std::string& opt_key, const boost::any& value)
         }
     }
 
+    // Confabric: Multi-parameter synchronization for Main tab in Simple mode
+    // When in Simple mode, sync related parameters from the Main tab controls
+    if (m_mode == comSimple) {
+        DynamicPrintConfig new_conf = *m_config;
+        bool config_changed = false;
+
+        // Layer Height: sync layer_height to initial_layer_print_height
+        if (opt_key == "layer_height") {
+            double lh = boost::any_cast<double>(value);
+            new_conf.set_key_value("initial_layer_print_height", new ConfigOptionFloat(lh));
+            config_changed = true;
+        }
+
+        // Line Width: sync line_width to all other line width parameters
+        if (opt_key == "line_width") {
+            double lw = boost::any_cast<double>(value);
+            new_conf.set_key_value("initial_layer_line_width", new ConfigOptionFloatOrPercent(lw, false));
+            new_conf.set_key_value("outer_wall_line_width", new ConfigOptionFloatOrPercent(lw, false));
+            new_conf.set_key_value("inner_wall_line_width", new ConfigOptionFloatOrPercent(lw, false));
+            new_conf.set_key_value("top_surface_line_width", new ConfigOptionFloatOrPercent(lw, false));
+            new_conf.set_key_value("sparse_infill_line_width", new ConfigOptionFloatOrPercent(lw, false));
+            new_conf.set_key_value("internal_solid_infill_line_width", new ConfigOptionFloatOrPercent(lw, false));
+            config_changed = true;
+        }
+
+        // Print Speed: sync outer_wall_speed to all other print speeds
+        if (opt_key == "outer_wall_speed") {
+            double speed = boost::any_cast<double>(value);
+            new_conf.set_key_value("inner_wall_speed", new ConfigOptionFloat(speed));
+            new_conf.set_key_value("small_perimeter_speed", new ConfigOptionFloatOrPercent(speed, false));
+            new_conf.set_key_value("sparse_infill_speed", new ConfigOptionFloat(speed));
+            new_conf.set_key_value("internal_solid_infill_speed", new ConfigOptionFloat(speed));
+            new_conf.set_key_value("top_surface_speed", new ConfigOptionFloat(speed));
+            new_conf.set_key_value("gap_infill_speed", new ConfigOptionFloat(speed));
+            new_conf.set_key_value("initial_layer_speed", new ConfigOptionFloat(speed));
+            new_conf.set_key_value("initial_layer_infill_speed", new ConfigOptionFloat(speed));
+            config_changed = true;
+        }
+
+        // Travel Speed: sync initial_layer_travel_speed to travel_speed (if exists)
+        // Note: travel_speed is commented out in this version, but keeping for future use
+        if (opt_key == "initial_layer_travel_speed") {
+            // Currently only initial_layer_travel_speed is available
+            // If travel_speed becomes available, sync it here
+        }
+
+        if (config_changed) {
+            m_config_manipulation.apply(m_config, &new_conf);
+        }
+    }
+
     if (m_postpone_update_ui) {
         // It means that not all values are rolled to the system/last saved values jet.
         // And call of the update() can causes a redundant check of the config values,
@@ -2289,7 +2340,51 @@ void TabPrint::build()
         m_presets = &m_preset_bundle->prints;
     load_initial_data();
 
-    auto page = add_options_page(L("Quality"), "custom-gcode_quality"); // ORCA: icon only visible on placeholders
+    // Confabric: Main tab - simplified settings for basic mode
+    auto page = add_options_page(L("Main"), "custom-gcode_single");
+    page->set_page_visibility_mode(PageVisibilityMode::pmSimpleOnly);
+
+        // Layer Height - controls both layer_height and initial_layer_print_height
+        auto optgroup = page->new_optgroup(L("Layer height"), L"param_layer_height");
+        optgroup->append_single_option_line("layer_height", "quality_settings_layer_height");
+
+        // Line Width - controls all line width parameters
+        optgroup = page->new_optgroup(L("Line width"), L"param_line_width");
+        optgroup->append_single_option_line("line_width", "quality_settings_line_width");
+
+        // Seam
+        optgroup = page->new_optgroup(L("Seam"), L"param_seam");
+        optgroup->append_single_option_line("seam_position", "quality_settings_seam#seam-position");
+
+        // Wall
+        optgroup = page->new_optgroup(L("Walls"), L"param_wall");
+        optgroup->append_single_option_line("wall_loops", "strength_settings_walls#wall-loops");
+
+        // Top/Bottom Shells
+        optgroup = page->new_optgroup(L("Top/bottom shells"), L"param_shell");
+        optgroup->append_single_option_line("top_shell_layers", "strength_settings_top_bottom_shells#shell-layers");
+        optgroup->append_single_option_line("top_surface_pattern", "strength_settings_top_bottom_shells#surface-pattern");
+        optgroup->append_single_option_line("bottom_shell_layers", "strength_settings_top_bottom_shells#shell-layers");
+        optgroup->append_single_option_line("bottom_surface_pattern", "strength_settings_top_bottom_shells#surface-pattern");
+
+        // Infill
+        optgroup = page->new_optgroup(L("Infill"), L"param_infill");
+        optgroup->append_single_option_line("sparse_infill_density", "strength_settings_infill#sparse-infill-density");
+        optgroup->append_single_option_line("internal_solid_infill_pattern", "strength_settings_infill#internal-solid-infill");
+
+        // Speed
+        optgroup = page->new_optgroup(L("Speed"), L"param_speed");
+        optgroup->append_single_option_line("outer_wall_speed", "speed_settings_other_layers_speed#outer-wall");
+        optgroup->append_single_option_line("initial_layer_travel_speed", "speed_settings_initial_layer_speed#initial-layer-travel-speed");
+
+        // Special Mode
+        optgroup = page->new_optgroup(L("Special mode"), L"param_special");
+        optgroup->append_single_option_line("spiral_mode", "others_settings_special_mode#spiral-vase");
+        optgroup->append_single_option_line("print_sequence", "others_settings_special_mode#print-sequence");
+
+    // Confabric: Quality tab - only visible in Advanced mode
+    page = add_options_page(L("Quality"), "custom-gcode_quality"); // ORCA: icon only visible on placeholders
+    page->set_page_visibility_mode(PageVisibilityMode::pmAdvancedOnly);
         auto optgroup = page->new_optgroup(L("Layer height"), L"param_layer_height");
         optgroup->append_single_option_line("layer_height","quality_settings_layer_height");
         optgroup->append_single_option_line("initial_layer_print_height","quality_settings_layer_height");
@@ -2367,7 +2462,9 @@ void TabPrint::build()
 
     // Confabric: Removed Bridging and Overhangs sections for concrete printing
 
+    // Confabric: Strength tab - only visible in Advanced mode
     page = add_options_page(L("Strength"), "custom-gcode_strength"); // ORCA: icon only visible on placeholders
+    page->set_page_visibility_mode(PageVisibilityMode::pmAdvancedOnly);
         optgroup = page->new_optgroup(L("Walls"), L"param_wall");
         optgroup->append_single_option_line("wall_loops", "strength_settings_walls#wall-loops");
         optgroup->append_single_option_line("alternate_extra_wall", "strength_settings_walls#alternate-extra-wall");
@@ -2413,7 +2510,9 @@ void TabPrint::build()
 
     // Confabric: Removed Strength > Advanced section for concrete printing
 
+    // Confabric: Speed tab - only visible in Advanced mode
     page = add_options_page(L("Speed"), "custom-gcode_speed"); // ORCA: icon only visible on placeholders
+    page->set_page_visibility_mode(PageVisibilityMode::pmAdvancedOnly);
         optgroup = page->new_optgroup(L("Initial layer speed"), L"param_speed_first", 15);
         optgroup->append_single_option_line("initial_layer_speed", "speed_settings_initial_layer_speed#initial-layer");
         optgroup->append_single_option_line("initial_layer_infill_speed", "speed_settings_initial_layer_speed#initial-layer-infill");
@@ -2619,7 +2718,9 @@ void TabPrint::build()
         optgroup->append_single_option_line("interlocking_boundary_avoidance", "multimaterial_settings_advanced#interlocking-boundary-avoidance");
     #endif // CONFABRIC_DISABLE_MULTIMATERIAL
 
+    // Confabric: Others tab - only visible in Advanced mode
     page = add_options_page(L("Others"), "custom-gcode_other"); // ORCA: icon only visible on placeholders
+    page->set_page_visibility_mode(PageVisibilityMode::pmAdvancedOnly);
         optgroup = page->new_optgroup(L("Skirt"), L"param_skirt");
         optgroup->append_single_option_line("skirt_loops", "others_settings_skirt#loops");
         optgroup->append_single_option_line("skirt_type", "others_settings_skirt#type");
@@ -6792,6 +6893,16 @@ void Page::reload_config()
 
 void Page::update_visibility(ConfigOptionMode mode, bool update_contolls_visibility)
 {
+    // Confabric: Check page visibility mode first
+    if (m_page_visibility_mode == PageVisibilityMode::pmSimpleOnly && mode != comSimple) {
+        m_show = false;
+        return;
+    }
+    if (m_page_visibility_mode == PageVisibilityMode::pmAdvancedOnly && mode == comSimple) {
+        m_show = false;
+        return;
+    }
+
     bool ret_val = false;
 #if HIDE_FIRST_SPLIT_LINE
     // BBS: no line spliter for first group
@@ -6809,6 +6920,11 @@ void Page::update_visibility(ConfigOptionMode mode, bool update_contolls_visibil
             first = false;
         }
 #endif
+    }
+
+    // Confabric: For Simple-only pages, always show if we have groups
+    if (m_page_visibility_mode == PageVisibilityMode::pmSimpleOnly && !m_optgroups.empty()) {
+        ret_val = true;
     }
 
     m_show = ret_val;

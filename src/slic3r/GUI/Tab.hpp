@@ -57,6 +57,13 @@ class OG_CustomCtrl;
 // Single Tab page containing a{ vsizer } of{ optgroups }
 // package Slic3r::GUI::Tab::Page;
 using ConfigOptionsGroupShp = std::shared_ptr<ConfigOptionsGroup>;
+// Page visibility mode - determines when a page is shown based on the current mode
+enum class PageVisibilityMode {
+    pmAlways,       // Page is always visible (default behavior)
+    pmSimpleOnly,   // Page is only visible in Simple mode
+    pmAdvancedOnly  // Page is only visible in Advanced mode
+};
+
 class Page: public std::enable_shared_from_this<Page>// : public wxScrolledWindow
 {
 	//BBS: GUI refactor
@@ -68,6 +75,8 @@ class Page: public std::enable_shared_from_this<Page>// : public wxScrolledWindo
 	// BBS: new layout
 	wxStaticText*	m_page_title;
     bool            m_show = true;
+    // Confabric: Page visibility mode for Main tab support
+    PageVisibilityMode m_page_visibility_mode = PageVisibilityMode::pmAlways;
 public:
 	//BBS: GUI refactor
     Page(wxWindow* parent, const wxString& title, int iconID, wxPanel* tab_owner);
@@ -114,6 +123,10 @@ public:
 			return *m_item_color;
 	}
     bool get_show() const { return m_show; }
+
+    // Confabric: Set page visibility mode for Main tab support
+    void set_page_visibility_mode(PageVisibilityMode mode) { m_page_visibility_mode = mode; }
+    PageVisibilityMode get_page_visibility_mode() const { return m_page_visibility_mode; }
 
     std::map<std::string, std::string> m_opt_id_map;
 
