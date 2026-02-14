@@ -1980,11 +1980,11 @@ void Tab::on_value_change(const std::string& opt_key, const boost::any& value)
             config_changed = true;
         }
 
-        // Travel Speed: sync initial_layer_travel_speed to travel_speed (if exists)
-        // Note: travel_speed is commented out in this version, but keeping for future use
-        if (opt_key == "initial_layer_travel_speed") {
-            // Currently only initial_layer_travel_speed is available
-            // If travel_speed becomes available, sync it here
+        // Travel Speed: sync travel_speed to initial_layer_travel_speed
+        if (opt_key == "travel_speed") {
+            double speed = boost::any_cast<double>(value);
+            new_conf.set_key_value("initial_layer_travel_speed", new ConfigOptionFloatOrPercent(speed, false));
+            config_changed = true;
         }
 
         if (config_changed) {
