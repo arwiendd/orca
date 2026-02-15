@@ -48,8 +48,8 @@ std::string GLGizmoMmuSegmentation::on_get_name() const
 
 bool GLGizmoMmuSegmentation::on_is_selectable() const
 {
-    // Confabric: Hide for concrete printing
-    return false;
+    return (wxGetApp().preset_bundle->printers.get_edited_preset().printer_technology() == ptFFF
+            && /*wxGetApp().get_mode() != comSimple && */wxGetApp().filaments_cnt() > 1);
 }
 
 bool GLGizmoMmuSegmentation::on_is_activable() const
