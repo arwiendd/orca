@@ -1980,10 +1980,11 @@ void Tab::on_value_change(const std::string& opt_key, const boost::any& value)
             config_changed = true;
         }
 
-        // Travel Speed: sync travel_speed to initial_layer_travel_speed
+        // Travel Speed: sync travel_speed to all travel-related speeds
         if (opt_key == "travel_speed") {
             double speed = boost::any_cast<double>(value);
             new_conf.set_key_value("initial_layer_travel_speed", new ConfigOptionFloatOrPercent(speed, false));
+            new_conf.set_key_value("travel_speed_z", new ConfigOptionFloat(0)); // 0 means use travel_speed
             config_changed = true;
         }
 
@@ -2374,8 +2375,20 @@ void TabPrint::build()
 
         // Speed - Printing Speed and Travel Speed
         optgroup = page->new_optgroup(L("Speed"), L"param_speed");
-        optgroup->append_single_option_line("outer_wall_speed", "speed_settings_other_layers_speed#outer-wall");
-        optgroup->append_single_option_line("travel_speed", "speed_settings_other_layers_speed#travel-speed");
+        // Printing Speed: controls all printing speeds (walls, infill, etc.)
+        {
+            Option option = optgroup->get_option("outer_wall_speed");
+            option.opt.label = L("Printing speed");
+            option.opt.tooltip = L("Speed for all printing moves. This controls the speed of walls, infill, and other extrusion moves.");
+            optgroup->append_single_option_line(option, "speed_settings_other_layers_speed");
+        }
+        // Travel Speed: controls all travel speeds
+        {
+            Option option = optgroup->get_option("travel_speed");
+            option.opt.label = L("Travel speed");
+            option.opt.tooltip = L("Speed for all travel moves (non-extruding movements).");
+            optgroup->append_single_option_line(option, "speed_settings_other_layers_speed#travel-speed");
+        }
 
         // Skirt
         optgroup = page->new_optgroup(L("Skirt"), L"param_skirt");
