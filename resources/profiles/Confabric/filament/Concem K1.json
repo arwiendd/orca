@@ -6,7 +6,6 @@
     "setting_id": "CFCONCK1",
     "filament_id": "CFCK1",
     "instantiation": "true",
-    "filament_color": ["#F6CC1D"],
     "filament_type": ["Concrete"],
     "filament_vendor": ["Confabric"],
     "filament_cost": ["12.5"],

@@ -1803,7 +1803,8 @@ void ConfigWizard::priv::load_pages()
         }
    
     // Filaments & Materials
-        if (any_fff_selected) { index->add_page(page_filaments); }
+        // Confabric: Also show filaments page for custom printer mode
+        if (any_fff_selected || custom_printer_selected) { index->add_page(page_filaments); }
     }
     if (any_sla_selected) { index->add_page(page_sla_materials); }
 
@@ -2759,6 +2760,10 @@ ConfigWizard::ConfigWizard(wxWindow *parent)
 
 	p->add_page(p->page_custom = new PageCustom(this));
     p->custom_printer_selected = p->page_custom->custom_wanted();
+    // Confabric: If custom printer is selected, enable FFF materials
+    if (p->custom_printer_selected) {
+        p->any_fff_selected = true;
+    }
 
     p->add_page(p->page_firmware = new PageFirmware(this));
     p->add_page(p->page_bed      = new PageBedShape(this));

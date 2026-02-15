@@ -2398,6 +2398,7 @@ void TabPrint::build()
             Option option = optgroup->get_option("outer_wall_speed");
             option.opt.label = L("Printing speed");
             option.opt.tooltip = L("Speed for all printing moves. This controls the speed of walls, infill, and other extrusion moves.");
+            option.opt.mode = comSimple;  // Override to show in Main tab
             optgroup->append_single_option_line(option, "speed_settings_other_layers_speed");
         }
         // Travel Speed: controls all travel speeds
@@ -2411,8 +2412,18 @@ void TabPrint::build()
         // Skirt
         optgroup = page->new_optgroup(L("Skirt"), L"param_skirt");
         optgroup->append_single_option_line("skirt_loops", "others_settings_skirt#loops");
-        optgroup->append_single_option_line("skirt_type", "others_settings_skirt#type");
-        optgroup->append_single_option_line("skirt_distance", "others_settings_skirt#distance");
+        // skirt_type - override mode to show in Main tab
+        {
+            Option option = optgroup->get_option("skirt_type");
+            option.opt.mode = comSimple;
+            optgroup->append_single_option_line(option, "others_settings_skirt#type");
+        }
+        // skirt_distance - override mode to show in Main tab
+        {
+            Option option = optgroup->get_option("skirt_distance");
+            option.opt.mode = comSimple;
+            optgroup->append_single_option_line(option, "others_settings_skirt#distance");
+        }
 
         // Special Mode
         optgroup = page->new_optgroup(L("Special mode"), L"param_special");
