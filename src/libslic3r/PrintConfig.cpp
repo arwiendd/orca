@@ -2235,7 +2235,7 @@ void PrintConfigDef::init_fff_params()
     def->min = 0;
     def->max = 1000;
     def->max_literal = 10;
-    def->mode = comAdvanced;
+    def->mode = comSimple;
     def->set_default_value(new ConfigOptionFloatOrPercent(0, false));
 
     def = this->add("reduce_fan_stop_start_freq", coBools);
@@ -6177,7 +6177,7 @@ void PrintConfigDef::init_fff_params()
     def->tooltip = L("Speed of travel which is faster and without extrusion.");
     def->sidetext = L("mm/s");	// milimeters per second, CIS languages need translation
     def->min = 1;
-    def->mode = comAdvanced;
+    def->mode = comSimple;
     def->set_default_value(new ConfigOptionFloat(120));
 
     def = this->add("travel_speed_z", coFloat);

@@ -17,6 +17,7 @@ const std::vector<MaterialTypeInfo>& MaterialType::all()
 {
     static const std::vector<MaterialTypeInfo> material_types = {
         {"ABS",         190, 300, 50, 65,  1,   0.1 , 100},
+        {"Concrete",      0,   0,  0,  0,  1,   0.02, 200},
         {"ABS-CF",      220, 300, 50, 65,  1,   0.1 , 100},
         {"ABS-GF",      240, 280, 50, 65,  1,   0.1 , 100},
         {"ASA",         220, 300, 50, 65,  1,   0.1 , 100},

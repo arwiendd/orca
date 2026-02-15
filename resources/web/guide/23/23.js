@@ -1,6 +1,6 @@
 var m_ProfileItem;
 
-var FilamentPriority=new Array( "pla","abs","pet","tpu","pc");
+var FilamentPriority=new Array( "concrete","pla","abs","pet","tpu","pc");
 var VendorPriority=new Array("generic");
 
 function OnInit()
