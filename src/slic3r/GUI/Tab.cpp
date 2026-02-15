@@ -1977,6 +1977,7 @@ void Tab::on_value_change(const std::string& opt_key, const boost::any& value)
             new_conf.set_key_value("gap_infill_speed", new ConfigOptionFloat(speed));
             new_conf.set_key_value("initial_layer_speed", new ConfigOptionFloat(speed));
             new_conf.set_key_value("initial_layer_infill_speed", new ConfigOptionFloat(speed));
+            new_conf.set_key_value("skirt_speed", new ConfigOptionFloat(speed));
             config_changed = true;
         }
 
