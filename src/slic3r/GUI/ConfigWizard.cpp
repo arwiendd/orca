@@ -1988,12 +1988,42 @@ void ConfigWizard::priv::update_materials(Technology technology)
     if (any_fff_selected && (technology & T_FFF)) {
         filaments.clear();
         aliases_fff.clear();
+
+        // Confabric: Check if any printer is visible (selected in wizard)
+        bool any_printer_visible = false;
+        for (const auto &pair : bundles) {
+            for (const auto &printer : pair.second.preset_bundle->printers) {
+                if (printer.is_visible && printer.printer_technology() == ptFFF) {
+                    any_printer_visible = true;
+                    break;
+                }
+            }
+            if (any_printer_visible) break;
+        }
+
         // Iterate filaments in all bundles
         for (const auto &pair : bundles) {
             for (const auto &filament : pair.second.preset_bundle->filaments) {
                 // Check if filament is already added
                 if (filaments.containts(&filament))
 					continue;
+
+                // Confabric: When using custom printer (no visible printers), add all filaments
+                if (custom_printer_selected && !any_printer_visible) {
+                    if (!filaments.containts(&filament)) {
+                        filaments.push(&filament);
+                        if (!filament.alias.empty())
+                            aliases_fff[filament.alias].insert(filament.name);
+                    }
+                    // Add all FFF printers as potentially compatible
+                    for (const auto &printer : pair.second.preset_bundle->printers) {
+                        if (printer.printer_technology() == ptFFF) {
+                            filaments.add_printer(&printer);
+                        }
+                    }
+                    continue;
+                }
+
                 // Iterate printers in all bundles
                 for (const auto &printer : pair.second.preset_bundle->printers) {
 					if (!printer.is_visible || printer.printer_technology() != ptFFF)
@@ -2003,12 +2033,12 @@ void ConfigWizard::priv::update_materials(Technology technology)
 						if (!filaments.containts(&filament)) {
 							filaments.push(&filament);
 							if (!filament.alias.empty())
-								aliases_fff[filament.alias].insert(filament.name); 
-						} 
+								aliases_fff[filament.alias].insert(filament.name);
+						}
 						filaments.add_printer(&printer);
                     }
 				}
-				
+
             }
         }
         // count compatible printers
@@ -2026,21 +2056,30 @@ void ConfigWizard::priv::update_materials(Technology technology)
                     idx_with_same_alias.push_back(i);
             }
             size_t counter = 0;
-            for (const auto& printer : filaments.printers) {
-                if (!(*printer).is_visible || (*printer).printer_technology() != ptFFF)
-                    continue;
-                bool compatible = false;
-                // Test otrher materials with same alias
-                for (size_t i = 0; i < idx_with_same_alias.size() && !compatible; ++i) {
-                    const Preset& prst = *(filaments.presets[idx_with_same_alias[i]]);
-                    const Preset& prntr = *printer;
-                    if (is_compatible_with_printer(PresetWithVendorProfile(prst, prst.vendor), PresetWithVendorProfile(prntr, prntr.vendor))) {
-                        compatible = true;
-                        break;
-                    }
+
+            // Confabric: For custom printer mode, count all FFF printers as compatible
+            if (custom_printer_selected && !any_printer_visible) {
+                for (const auto& printer : filaments.printers) {
+                    if ((*printer).printer_technology() == ptFFF)
+                        counter++;
                 }
-                if (compatible)
-                    counter++;
+            } else {
+                for (const auto& printer : filaments.printers) {
+                    if (!(*printer).is_visible || (*printer).printer_technology() != ptFFF)
+                        continue;
+                    bool compatible = false;
+                    // Test other materials with same alias
+                    for (size_t i = 0; i < idx_with_same_alias.size() && !compatible; ++i) {
+                        const Preset& prst = *(filaments.presets[idx_with_same_alias[i]]);
+                        const Preset& prntr = *printer;
+                        if (is_compatible_with_printer(PresetWithVendorProfile(prst, prst.vendor), PresetWithVendorProfile(prntr, prntr.vendor))) {
+                            compatible = true;
+                            break;
+                        }
+                    }
+                    if (compatible)
+                        counter++;
+                }
             }
             filaments.compatibility_counter.emplace_back(preset->alias, counter);
         }
@@ -2113,6 +2152,13 @@ void ConfigWizard::priv::update_materials(Technology technology)
 void ConfigWizard::priv::on_custom_setup(const bool custom_wanted)
 {
 	custom_printer_selected = custom_wanted;
+    // Confabric: When custom printer is selected, enable FFF materials
+    // Custom printers are assumed to be FFF by default
+    if (custom_wanted) {
+        any_fff_selected = true;
+        // Update materials to show all available filaments for custom printers
+        update_materials(T_FFF);
+    }
     load_pages();
 }
 

@@ -1955,14 +1955,21 @@ void Tab::on_value_change(const std::string& opt_key, const boost::any& value)
         }
 
         // Line Width: sync line_width to all other line width parameters
+        // Note: coFloatOrPercent values are passed as std::string, not double
         if (opt_key == "line_width") {
-            double lw = boost::any_cast<double>(value);
-            new_conf.set_key_value("initial_layer_line_width", new ConfigOptionFloatOrPercent(lw, false));
-            new_conf.set_key_value("outer_wall_line_width", new ConfigOptionFloatOrPercent(lw, false));
-            new_conf.set_key_value("inner_wall_line_width", new ConfigOptionFloatOrPercent(lw, false));
-            new_conf.set_key_value("top_surface_line_width", new ConfigOptionFloatOrPercent(lw, false));
-            new_conf.set_key_value("sparse_infill_line_width", new ConfigOptionFloatOrPercent(lw, false));
-            new_conf.set_key_value("internal_solid_infill_line_width", new ConfigOptionFloatOrPercent(lw, false));
+            std::string str = boost::any_cast<std::string>(value);
+            bool percent = false;
+            if (!str.empty() && str.back() == '%') {
+                str.pop_back();
+                percent = true;
+            }
+            double lw = std::stod(str);
+            new_conf.set_key_value("initial_layer_line_width", new ConfigOptionFloatOrPercent(lw, percent));
+            new_conf.set_key_value("outer_wall_line_width", new ConfigOptionFloatOrPercent(lw, percent));
+            new_conf.set_key_value("inner_wall_line_width", new ConfigOptionFloatOrPercent(lw, percent));
+            new_conf.set_key_value("top_surface_line_width", new ConfigOptionFloatOrPercent(lw, percent));
+            new_conf.set_key_value("sparse_infill_line_width", new ConfigOptionFloatOrPercent(lw, percent));
+            new_conf.set_key_value("internal_solid_infill_line_width", new ConfigOptionFloatOrPercent(lw, percent));
             config_changed = true;
         }
 
