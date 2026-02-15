@@ -1250,7 +1250,17 @@ void Tab::reload_config()
 
 void Tab::update_mode()
 {
-    m_mode = wxGetApp().get_mode();
+    // Confabric: Apply different mode logic based on tab type
+    // Filament and Printer tabs always use Advanced mode
+    // Process tab uses process_expert_mode setting
+    if (m_type == Preset::TYPE_FILAMENT || m_type == Preset::TYPE_PRINTER) {
+        m_mode = comAdvanced; // Always show all options for Filament and Printer
+    } else if (m_type == Preset::TYPE_PRINT) {
+        // Process tab uses its own expert mode setting
+        m_mode = wxGetApp().get_process_expert_mode() ? comAdvanced : comSimple;
+    } else {
+        m_mode = wxGetApp().get_mode();
+    }
 
     //BBS: GUI refactor
     // update mode for ModeSizer
@@ -2401,6 +2411,7 @@ void TabPrint::build()
         // Skirt
         optgroup = page->new_optgroup(L("Skirt"), L"param_skirt");
         optgroup->append_single_option_line("skirt_loops", "others_settings_skirt#loops");
+        optgroup->append_single_option_line("skirt_type", "others_settings_skirt#type");
         optgroup->append_single_option_line("skirt_distance", "others_settings_skirt#distance");
 
         // Special Mode

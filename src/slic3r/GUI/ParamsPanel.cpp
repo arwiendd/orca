@@ -565,22 +565,17 @@ void ParamsPanel::OnToggled(wxCommandEvent& event)
 
     // this is from tab's mode switch
     bool value = dynamic_cast<SwitchButton*>(event.GetEventObject())->GetValue();
-    int mode_id;
 
-    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(": Advanced mode toogle to %1%") % value;
+    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(": Advanced mode toggle to %1%") % value;
 
-    if (value)
-    {
-        //m_mode_region->SetBitmap(m_toggle_on_icon);
-        mode_id = comAdvanced;
+    // Confabric: Handle mode toggle differently based on current tab
+    Tab* current_tab = dynamic_cast<Tab*>(m_current_tab);
+    if (current_tab && current_tab->type() == Preset::TYPE_PRINT) {
+        // For Process tab, save to process_expert_mode
+        Slic3r::GUI::wxGetApp().save_process_expert_mode(value);
     }
-    else
-    {
-        //m_mode_region->SetBitmap(m_toggle_off_icon);
-        mode_id = comSimple;
-    }
+    // Note: Filament and Printer tabs always stay in Advanced mode, so toggle is ignored for them
 
-    Slic3r::GUI::wxGetApp().save_mode(mode_id);
     event.Skip();
 }
 
@@ -666,8 +661,33 @@ void ParamsPanel::update_mode()
         mode_view->Disable();
         return;
     }
+
+    // Confabric: Handle mode toggle differently based on current tab type
+    Tab* current_tab = dynamic_cast<Tab*>(m_current_tab);
+    if (current_tab) {
+        if (current_tab->type() == Preset::TYPE_FILAMENT || current_tab->type() == Preset::TYPE_PRINTER) {
+            // Filament and Printer tabs always show all options (Advanced mode)
+            // Hide the toggle since it's not used for these tabs
+            mode_view->SetValue(true);
+            mode_view->Hide();
+            if (m_mode_sizer) m_mode_sizer->Layout();
+            return;
+        } else if (current_tab->type() == Preset::TYPE_PRINT) {
+            // Process tab uses its own expert mode setting
+            mode_view->Show();
+            if (!mode_view->IsEnabled())
+                mode_view->Enable();
+            bool process_expert = Slic3r::GUI::wxGetApp().get_process_expert_mode();
+            mode_view->SetValue(process_expert);
+            if (m_mode_sizer) m_mode_sizer->Layout();
+            return;
+        }
+    }
+
+    // Default behavior for other tabs
     if (!mode_view->IsEnabled())
         mode_view->Enable();
+    mode_view->Show();
 
     if (app_mode == comAdvanced)
     {

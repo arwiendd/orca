@@ -2754,8 +2754,8 @@ ConfigWizard::ConfigWizard(wxWindow *parent)
     
     p->only_sla_mode = false;
     p->any_sla_selected = p->check_sla_selected();
-    if (p->only_sla_mode)
-        p->any_fff_selected = p->check_fff_selected();
+    // Confabric: Always check FFF selection (bug fix - was only checked in SLA mode)
+    p->any_fff_selected = p->check_fff_selected();
 
 	p->add_page(p->page_custom = new PageCustom(this));
     p->custom_printer_selected = p->page_custom->custom_wanted();

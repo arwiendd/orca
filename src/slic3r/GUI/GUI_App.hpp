@@ -527,6 +527,9 @@ public:
     std::string     get_mode_str();
     void            save_mode(const /*ConfigOptionMode*/int mode) ;
     void            update_mode();
+    // Confabric: Process-specific expert mode
+    bool            get_process_expert_mode();
+    void            save_process_expert_mode(bool expert_mode);
     void            update_internal_development();
     void            show_ip_address_enter_dialog(wxString title = wxEmptyString);
     void            show_ip_address_enter_dialog_handler(wxCommandEvent &evt);

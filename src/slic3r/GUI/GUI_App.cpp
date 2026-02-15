@@ -6358,6 +6358,32 @@ void GUI_App::update_internal_development() {
         mainframe->m_printer_view->update_mode();
 }
 
+// Confabric: Process-specific expert mode
+bool GUI_App::get_process_expert_mode()
+{
+    if (!app_config->has("process_expert_mode"))
+        return false; // Default to simple mode for Process
+    return app_config->get_bool("process_expert_mode");
+}
+
+void GUI_App::save_process_expert_mode(bool expert_mode)
+{
+    app_config->set_bool("process_expert_mode", expert_mode);
+    // Update the print tab if available
+    if (mainframe && mainframe->m_param_panel) {
+        mainframe->m_param_panel->update_mode();
+    }
+    if (mainframe && mainframe->m_param_dialog) {
+        mainframe->m_param_dialog->panel()->update_mode();
+    }
+    // Update the tab visibility
+    for (auto tab : tabs_list) {
+        if (tab && tab->type() == Preset::TYPE_PRINT) {
+            tab->update_mode();
+        }
+    }
+}
+
 void GUI_App::show_ip_address_enter_dialog(wxString title)
 {
     auto evt = new wxCommandEvent(EVT_SHOW_IP_DIALOG);
