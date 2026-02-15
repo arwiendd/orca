@@ -6464,7 +6464,7 @@ int CLI::run(int argc, char **argv)
                                 const ModelInstance &model_instance = *model_object.instances[instance_idx];
                                 glvolume_collection.load_object_volume(&model_object, obj_idx, volume_idx, instance_idx, "volume", true, false, true);
                                 //glvolume_collection.volumes.back()->geometry_id = key.geometry_id;
-                                std::string color = filament_color?filament_color->get_at(volume_extruder_id - 1):"#00FF00FF";
+                                std::string color = filament_color?filament_color->get_at(volume_extruder_id - 1):"#F6CC1DFF"; // Confabric: Default to gold instead of green
 
                                 BOOST_LOG_TRIVIAL(debug) << boost::format("volume %1%'s color %2%")%volume_idx %color;
 

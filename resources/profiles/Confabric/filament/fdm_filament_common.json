@@ -3,6 +3,8 @@
     "name": "fdm_filament_common",
     "from": "system",
     "instantiation": "false",
+    "filament_colour": ["#F6CC1D"],
+    "default_filament_colour": ["#F6CC1D"],
     "cool_plate_temp": ["0"],
     "eng_plate_temp": ["0"],
     "hot_plate_temp": ["0"],

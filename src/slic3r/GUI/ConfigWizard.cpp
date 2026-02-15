@@ -1803,10 +1803,11 @@ void ConfigWizard::priv::load_pages()
         }
    
     // Filaments & Materials
-        // Confabric: Also show filaments page for custom printer mode
-        if (any_fff_selected || custom_printer_selected) { index->add_page(page_filaments); }
+        // Confabric: Skip filaments page - materials are auto-selected with printer
+        // if (any_fff_selected || custom_printer_selected) { index->add_page(page_filaments); }
     }
-    if (any_sla_selected) { index->add_page(page_sla_materials); }
+    // Confabric: Skip SLA materials page as well
+    // if (any_sla_selected) { index->add_page(page_sla_materials); }
 
     // there should to be selected at least one printer
     btn_finish->Enable(any_fff_selected || any_sla_selected || custom_printer_selected);
